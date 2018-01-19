@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>vim | Hexo</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="前身 vi: visual interface所以 vim: vi improved 类型    模块化的编辑器 基本模式    编辑模式，又叫命令模式    输入模式    末行模式 打开文件    vim [OPTIONS] [FILE..]        +#: 打开后，光标的地方        +/PATTEN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim">
+<meta property="og:url" content="http://yoursite.com/2017/11/19/vim/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前身 vi: visual interface所以 vim: vi improved 类型    模块化的编辑器 基本模式    编辑模式，又叫命令模式    输入模式    末行模式 打开文件    vim [OPTIONS] [FILE..]        +#: 打开后，光标的地方        +/PATTEN: 打开后，光标置于匹配到的行 模式转换    默认是编辑模式 编辑模式 --&amp;">
+<meta property="og:updated_time" content="2018-01-19T06:06:25.008Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vim">
+<meta name="twitter:description" content="前身 vi: visual interface所以 vim: vi improved 类型    模块化的编辑器 基本模式    编辑模式，又叫命令模式    输入模式    末行模式 打开文件    vim [OPTIONS] [FILE..]        +#: 打开后，光标的地方        +/PATTEN: 打开后，光标置于匹配到的行 模式转换    默认是编辑模式 编辑模式 --&amp;">
+    
+
+    
+        <link rel="alternate" href="/" title="Hexo" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-vim" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        vim
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/11/19/vim/" class="article-date">
+            <time datetime="2017-11-19T13:51:19.088Z" itemprop="datePublished">2017-11-19</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>前身 vi: visual interface<br>所以 vim: vi improved</p>
+<p>类型<br>    模块化的编辑器</p>
+<p>基本模式<br>    编辑模式，又叫命令模式<br>    输入模式<br>    末行模式</p>
+<p>打开文件<br>    vim [OPTIONS] [FILE..]<br>        +#: 打开后，光标的地方<br>        +/PATTEN: 打开后，光标置于匹配到的行</p>
+<p>模式转换<br>    默认是编辑模式</p>
+<pre><code>编辑模式 --&gt; 输入模式
+    i: 光标处输入
+    a: 光标后输入
+    o: 光标下打开新行
+    O: 光标上打开
+    I: 行首输入
+    A: 行尾输入
+
+输入模式 --&gt; 编辑模式
+    ESC
+
+编辑模式 --&gt; 末行模式
+    :
+
+末行模式 --&gt; 编辑模式
+    ESC
+</code></pre><p>关闭文件<br>    编辑模式下<br>    ZZ<br>    :wq 保存并退出<br>    :q 退出<br>    :q! 不保存退出<br>    :x 保存并退出<br>    :w /PATH/TO/SOMEWHERE 另存为 </p>
+<p>光标跳转<br>    字符间跳转<br>        h: 左<br>        j: 下<br>        k: 上<br>        l: 右</p>
+<pre><code>    #COMMAND: 跳转多个字符
+
+单词间跳转
+    w: 下一单词词首
+    e: 当前或后一个单词词尾
+    b: 当前或前一个单词词首
+
+行首行尾跳转
+    ^: 行首
+    $: 行尾
+
+行间跳转
+    G: 最后一行
+    1G, gg: 第一行
+    #G: 指定行 
+
+翻屏
+    ctrl+f: 向后翻一屏
+    ctrl+b: 向前
+    ctrl+d: 向后翻半屏
+    ctrl+f: 向前
+    enter: 向后翻一行
+
+编辑命令
+
+    字符编辑
+        x: 删除当前光标字符
+        #x: 
+        xp: 交换光标与后一个字符的位置
+
+    字符替换
+        r
+
+    删除命令,相当于剪切
+        d: 
+        d$: 
+        d^: 
+        dw: 删除一个词
+        de:
+        db:
+        dd:
+        #dd: 
+
+    复制命令(yank)
+        y: 复制当前
+        ...同d命令
+
+    粘贴命令(paste)
+        p: 粘贴到光标后或行下方
+        P: 粘贴到光标前或行上方
+
+    改变命令(change)
+        删除后进入输入模式
+        c..同d
+
+    可视化模式
+        v: 按字符选定
+        V: 按行选定
+
+        结合编辑命令使用: d, c, y
+
+    撤销命令(undo)
+        u: 撤销一次操作
+        #u: 撤销多次
+
+    重复操作
+        .: 重复一次
+
+末行模式
+
+    地址定界
+        :start_pos[,end_pos]
+            #: 
+            .: 当前
+            $: 最后一行
+            #,#:
+            #,+#: 
+            %: 全文
+            /pattern/: 光标处到行尾第一次匹配到的行
+            /pat1/,/pat2/: 
+
+        联合编辑命令一起使用
+            d
+            y
+            c
+            w /PATH/TO/SOMEWHERE: 保存范围内文本到指定文件中
+            r /PATH/FROM/SOMEWHERE: 从指定文件中读取并插入到指定位置
+
+    查找
+        /PATTERN: 光标处到尾部所有匹配
+        ?PATTERN: 光标到首部所有匹配
+
+    替换
+        s/要查找的内容/替换的内容/修饰符
+            替换的内容: 可以用&amp;关键字引用前面分组的文本
+            修饰符:
+                i: 忽略大小写
+                g: 全局替换
+
+        可把分隔符替换为其它非常用字符:
+            s@@@
+            s###
+
+多文件功能:
+    vim FILE1 FILE2
+        :next 下一个
+        :prev 上一个
+        :first 第一个
+        :last 最后一个
+
+    退出:
+        :wqall 保存并退出所有文件
+
+    多窗口
+        -o: 水平分割
+        -O: 垂直分割
+
+        切换: ctrl+w,arrow
+
+        单文件分割
+            ctrl+w, s: 水平分割
+            ctrl+w, v: 垂直分割
+</code></pre>
+        </div>
+        <footer class="article-footer">
+                <span id="busuanzi_container_page_pv">
+                        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+                      </span>
+            
+
+
+
+    <a data-url="http://yoursite.com/2017/11/19/vim/" data-id="cjclmm5680002kgum9wijwg23" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/11/19/Linux的用户和权限管理/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Linux的用户和权限管理</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/11/19/vim/" class="title">vim</a></p>
+                            <p class="item-date"><time datetime="2017-11-19T13:51:19.088Z" itemprop="datePublished">2017-11-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/11/19/Linux的用户和权限管理/" class="title">Linux的用户和权限管理</a></p>
+                            <p class="item-date"><time datetime="2017-11-19T05:59:58.183Z" itemprop="datePublished">2017-11-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/11/18/Linux的文件系统(FHS)/" class="title">Linux的文件系统(FHS)</a></p>
+                            <p class="item-date"><time datetime="2017-11-18T13:49:28.986Z" itemprop="datePublished">2017-11-18</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+                <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+                </script>
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 John Doe</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <span id="busuanzi_container_site_pv">
+                        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                    </span>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2017/11/19/vim/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
