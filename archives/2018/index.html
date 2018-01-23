@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Arxiu: 2017/11 | Hexo</title>
+    <title>Arxiu: 2018 | Hexo</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2017/11/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
@@ -121,7 +121,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Arxiu: 2017/11
+    <i class="icon fa fa-archive"></i>Arxiu: 2018
     </h1>
 </div>
                         <div class="main-body-content">
@@ -133,7 +133,7 @@
         
         <section class="archives-wrap">
             <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
+                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
             </div>
             <div class="archives">
     
@@ -148,92 +148,24 @@
             <div class="category">
             
             </div>
-            <div class="date"><time datetime="2017-11-19T13:51:19.088Z" itemprop="datePublished">2017-11-19</time></div>
+            <div class="date"><time datetime="2018-01-22T09:36:41.000Z" itemprop="datePublished">2018-01-22</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/11/19/vim/">vim</a>
+        <a href="/2018/01/22/find详解/">find详解</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前身 vi: visual interface所以 vim: vi improved
-类型    模块化的编辑器
-基本模式    编辑模式，又叫命令模式    输入模式    末行模式
-打开文件    vim [OPTIONS] [FILE..]        +#: 打开后，光标的地方        +/PATTEN: 打开后，光标置于匹配到的行
-模式转换    默认是编辑模式
-编辑模式 --&
-        </p>
-    </div>
-</article>
-    
+            简介:实时查找工具,通过遍历文件系统层级结构完成文件查找
+特性:    查找速度略慢(相对于locate)    精确查找    实时查找
+用法:    find [OPTIONS] [START_POS] [CONDITION] [ACTION]
+CONDITION
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2017-11-19T05:59:58.183Z" itemprop="datePublished">2017-11-19</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/11/19/Linux的用户和权限管理/">Linux的用户和权限管理</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            用户管理
-相关文件1. /etc/passwd2. /etc/shadow
-
-/etc/passwd格式name:password:UID:GID:GECOS:directory:shell注:GECOS为注释
-/etc/shadow格式name:encrypted password:last modified:最短使用期限：最长使用期限：警告时间：过期时间：保留
-useradd
-    -u,
-
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2017-11-18T13:49:28.986Z" itemprop="datePublished">2017-11-18</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/11/18/Linux的文件系统(FHS)/">Linux的文件系统(FHS)</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            
-/bin: 所有用户可用的基本命令程序文件
-/sbin: 供系统管理使用的工具程序
-/lib: 为系统启动或跟文件系统上的应用程序(/bin,/sbin等)提供共享库，以及为内核提供内核模块  libc.so.: 动态链接的C库  ld: 运行时链接器/加载器  modules: 用于存储内核模块的目录
-/lib64: 64位系统特有的存放64位共享库的路径
-/boot: 引导加载器必须用到的静
+    根据文件名
+        -name &quot;pattern&quot;
+        -iname &quot
         </p>
     </div>
 </article>
