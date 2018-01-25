@@ -177,4 +177,17 @@ title: vim
                 ctrl+w, s: 水平分割
                 ctrl+w, v: 垂直分割
 
+    额外选项:
+        1. 显示行号
+                set nu
+                set nonu
+        2. 括号匹配高亮
+                set sm
+                set nosm
+        3. 自动缩进
+                set ai
+                set noai
+        4. 语法高亮
+                syntax on
+                syntax off
     
