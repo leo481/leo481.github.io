@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>rpm包管理 | Hexo</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="最初,许多Linux程序以源代码的形式发行,用户再把源代码通过预处理,编译,汇编,链接构建成程序.另外还有一系列的帮助文档以及配置文件.如今发行商使用包的构建的程序或程序集,包便于在发行版上安装. Red Hat开发的Red Hat Package Manager(RPM),以及Debian的APT是如今主流的两个包管">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rpm包管理">
+<meta property="og:url" content="http://yoursite.com/2018/01/25/rpm包管理/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最初,许多Linux程序以源代码的形式发行,用户再把源代码通过预处理,编译,汇编,链接构建成程序.另外还有一系列的帮助文档以及配置文件.如今发行商使用包的构建的程序或程序集,包便于在发行版上安装. Red Hat开发的Red Hat Package Manager(RPM),以及Debian的APT是如今主流的两个包管理系统.它们都可以安装和删除包.包的信息都保存在数据库中.它们都有相似的基本操作">
+<meta property="og:updated_time" content="2018-01-25T18:40:14.790Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rpm包管理">
+<meta name="twitter:description" content="最初,许多Linux程序以源代码的形式发行,用户再把源代码通过预处理,编译,汇编,链接构建成程序.另外还有一系列的帮助文档以及配置文件.如今发行商使用包的构建的程序或程序集,包便于在发行版上安装. Red Hat开发的Red Hat Package Manager(RPM),以及Debian的APT是如今主流的两个包管理系统.它们都可以安装和删除包.包的信息都保存在数据库中.它们都有相似的基本操作">
+    
+
+    
+        <link rel="alternate" href="/" title="Hexo" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'categories',
+            TAGS: 'etiquetes',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    Sense categoria
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-rpm包管理" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        rpm包管理
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/01/25/rpm包管理/" class="article-date">
+            <time datetime="2018-01-25T15:44:46.000Z" itemprop="datePublished">2018-01-25</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>最初,许多Linux程序以源代码的形式发行,用户再把源代码通过预处理,编译,汇编,链接构建成程序.另外还有一系列的帮助文档以及配置文件.如今发行商使用包的构建的程序或程序集,包便于在发行版上安装.</p>
+<p>Red Hat开发的Red Hat Package Manager(RPM),以及Debian的APT是如今主流的两个包管理系统.它们都可以安装和删除包.包的信息都保存在数据库中.它们都有相似的基本操作指令,同时通过其它工具提供对用户友好的界面.</p>
+<h1 id="RPM"><a href="#RPM" class="headerlink" title="RPM"></a>RPM</h1><p>Red Hat 在1995年引入了RPM.RPM现在是Linux Standard Base(LSB)中采用的包管理系统.rpm命令选项分为三类:</p>
+<pre><code>- 查询和升级包
+- 安装,升级和卸载包
+- 其它功能
+</code></pre><h1 id="YUM"><a href="#YUM" class="headerlink" title="YUM"></a>YUM</h1><p>YUM在RPM系统中增加了自动更新和包管理,还提供了依赖关系的管理.<br>除了了解系统上安装的包之外,YUM还使用存储库.存储库是包的集合,通常可以通过网络连接访问它们.</p>
+<h1 id="安装RPM包"><a href="#安装RPM包" class="headerlink" title="安装RPM包"></a>安装RPM包</h1><p>首先,尝试安装一个gcl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@echidna ~]# rpm -i gcl-2.6.8-0.6.20090701cvs.fc12.x86_64.rpm</span><br><span class="line">error: Failed dependencies:</span><br><span class="line">gcl-selinux is needed by gcl-2.6.8-0.6.20090701cvs.fc12.x86_64</span><br></pre></td></tr></table></figure></p>
+<p>rpm知道这个包依赖于另外一个包,但是rpm并不会解决这个问题.于是你需要把这个被依赖的包安装,然后再次尝试.如果这个包还依赖于更多的包的话,需要不断重复上述过程,直至满足所有依赖关系为止.如果一开始把所有的包都提供的话,rpm将会以正确的次序安装所有包.</p>
+<p>此时,yum的出现可以大大减少这方面的工作量.它会自动徐照需要的依赖包并安装它们</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">[root@echidna ~]# yum install gcl</span><br><span class="line">Loaded plugins: presto, refresh-packagekit</span><br><span class="line">Setting up Install Process</span><br><span class="line">Resolving Dependencies</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package gcl.x86_64 0:2.6.8-0.7.20100201cvs.fc12 set to be updated</span><br><span class="line">--&gt; Processing Dependency: gcl-selinux for package: gcl-2.6.8-0.7.20100201cvs.fc12.x86_64</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package gcl-selinux.x86_64 0:2.6.8-0.7.20100201cvs.fc12 set to be updated</span><br><span class="line">--&gt; Finished Dependency Resolution</span><br><span class="line"> </span><br><span class="line">Dependencies Resolved</span><br><span class="line"> </span><br><span class="line">=====================================================================================</span><br><span class="line"> Package           Arch         Version                          Repository     Size</span><br><span class="line">=====================================================================================</span><br><span class="line">Installing:</span><br><span class="line"> gcl               x86_64       2.6.8-0.7.20100201cvs.fc12       updates       6.3 M</span><br><span class="line">Installing for dependencies:</span><br><span class="line"> gcl-selinux       x86_64       2.6.8-0.7.20100201cvs.fc12       updates        17 k</span><br><span class="line"> </span><br><span class="line">Transaction Summary</span><br><span class="line">=====================================================================================</span><br><span class="line">Install       2 Package(s)</span><br><span class="line">Upgrade       0 Package(s)</span><br><span class="line"> </span><br><span class="line">Total download size: 6.4 M</span><br><span class="line">Installed size: 40 M</span><br><span class="line">Is this ok [y/N]: y</span><br><span class="line">Downloading Packages:</span><br><span class="line">Setting up and reading Presto delta metadata</span><br><span class="line">updates/prestodelta                                           | 964 kB     00:01     </span><br><span class="line">Processing delta metadata</span><br><span class="line">Package(s) data still to download: 6.4 M</span><br><span class="line">(1/2): gcl-2.6.8-0.7.20100201cvs.fc12.x86_64.rpm              | 6.3 MB     00:12     </span><br><span class="line">(2/2): gcl-selinux-2.6.8-0.7.20100201cvs.fc12.x86_64.rpm      |  17 kB     00:00     </span><br><span class="line">-------------------------------------------------------------------------------------</span><br><span class="line">Total                                                398 kB/s | 6.4 MB     00:16     </span><br><span class="line">Running rpm_check_debug</span><br><span class="line">Running Transaction Test</span><br><span class="line">Transaction Test Succeeded</span><br><span class="line">Running Transaction</span><br><span class="line">  Installing     : gcl-selinux-2.6.8-0.7.20100201cvs.fc12.x86_64                 1/2 </span><br><span class="line">  Installing     : gcl-2.6.8-0.7.20100201cvs.fc12.x86_64                         2/2 </span><br><span class="line"> </span><br><span class="line">Installed:</span><br><span class="line">  gcl.x86_64 0:2.6.8-0.7.20100201cvs.fc12                                            </span><br><span class="line"> </span><br><span class="line">Dependency Installed:</span><br><span class="line">  gcl-selinux.x86_64 0:2.6.8-0.7.20100201cvs.fc12                                    </span><br><span class="line"> </span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>
+<p>输出表明,YUM在名为”update”的存储库中找到了gcl.x86_64 0:2.6.8-0.7.20100201cvs.fc12 和 gcl-selinux.x86_64 0:2.6.8-0.7.20100201cvs.fc12.</p>
+<h2 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h2><ul>
+<li>-i: 安装</li>
+<li>-v: 显示安装过程</li>
+<li>-h: 显示安装进度</li>
+<li>–replacepkgs: 如果原有配置文件作了修改，很有可能不执行替换，而是将应该安装生成的配置文件重命名为 .rpmnew</li>
+</ul>
+<h1 id="包的位置"><a href="#包的位置" class="headerlink" title="包的位置"></a>包的位置</h1><p>YUM是如何知道从哪里下载包的呢?</p>
+<p>起点是/etc/yum.repos.d/这个目录,这个目录通常包含几个repo文件.这是repo的默认位置.你也可以通过修改/etc/yum.conf指定其它位置.</p>
+<p>存储库提供了存储库位置以及指出存储库的启用与否,还有是否应该使用gpg签名检查下载的包</p>
+<h1 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h1><p>与安装包不同，当使用 rpm 删除包时，在删除包之前没有提示。但是，如果试图删除其他包需要的包，它不会执行删除操作.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@echidna ~]# rpm -e gcl-selinux</span><br><span class="line">error: Failed dependencies:</span><br><span class="line">    gcl-selinux is needed by (installed) gcl-2.6.8-0.7.20100201cvs.fc12.x86_64</span><br></pre></td></tr></table></figure>
+<p>如果使用 yum remove，在执行事务测试之后会显示提示。如果试图删除的包是其他已安装包的依赖包，YUM 会提议删除这些包和依赖包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[root@echidna ~]# yum remove gcl-selinux</span><br><span class="line">Loaded plugins: presto, refresh-packagekit</span><br><span class="line">Setting up Remove Process</span><br><span class="line">Resolving Dependencies</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package gcl-selinux.x86_64 0:2.6.8-0.7.20100201cvs.fc12 set to be erased</span><br><span class="line">--&gt; Processing Dependency: gcl-selinux for package: gcl-2.6.8-0.7.20100201cvs.fc12.x86_64</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package gcl.x86_64 0:2.6.8-0.7.20100201cvs.fc12 set to be erased</span><br><span class="line">--&gt; Finished Dependency Resolution</span><br><span class="line"> </span><br><span class="line">Dependencies Resolved</span><br><span class="line"> </span><br><span class="line">=====================================================================================</span><br><span class="line"> Package          Arch        Version                            Repository     Size</span><br><span class="line">=====================================================================================</span><br><span class="line">Removing:</span><br><span class="line"> gcl-selinux      x86_64      2.6.8-0.7.20100201cvs.fc12         @updates       90 k</span><br><span class="line">Removing for dependencies:</span><br><span class="line"> gcl              x86_64      2.6.8-0.7.20100201cvs.fc12         @updates       40 M</span><br><span class="line"> </span><br><span class="line">Transaction Summary</span><br><span class="line">=====================================================================================</span><br><span class="line">Remove        2 Package(s)</span><br><span class="line">Reinstall     0 Package(s)</span><br><span class="line">Downgrade     0 Package(s)</span><br><span class="line"> </span><br><span class="line">Is this ok [y/N]: n</span><br><span class="line">Exiting on user Command</span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>
+<h2 id="常用选项-1"><a href="#常用选项-1" class="headerlink" title="常用选项"></a>常用选项</h2><ul>
+<li>-e: 卸载</li>
+</ul>
+<h1 id="RPM升级"><a href="#RPM升级" class="headerlink" title="RPM升级"></a>RPM升级</h1><p>如果知道 RPM 文件的位置，或者已经下载了它们，那么也可以使用 rpm 命令执行更新。这与安装相似，只是要使用 -U 或 -F 选项而不是 -i 选项。这两个选项的差异是， -U 选项更新现有的包，如果这个包还没有安装，就安装它；而 -F 选项只升级或刷新 已经安装的包。因此，经常使用 -U 选项，尤其是在命令行包含 RPM 列表的情况下。这样的话，就会安装未安装的包，升级已经安装的包。</p>
+<p>如果使用YUM的话,使用<br>    yum remove PACKAGENAME</p>
+<h1 id="查询RPM包"><a href="#查询RPM包" class="headerlink" title="查询RPM包"></a>查询RPM包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rpm –q packages_name #→查询单个指定的包是否安装.</span><br><span class="line">rpm –qa packages_name #→查询所有已安装的包.</span><br><span class="line">rpm –qi packages_name packages_name #→查询指定包的描述信息.</span><br><span class="line">rpm –ql packages_name #→查询包安装之后在当前系统上生成的文件的列表.</span><br><span class="line">rpm –qd packages_name #→查询安装后生成的帮助文档.</span><br><span class="line">rpm –qc packages_name #→查询安装后生成的配置文件.</span><br><span class="line">rpm –q --scripts packages_name #→查询安装后包相关的脚本.</span><br></pre></td></tr></table></figure>
+<h1 id="恢复包"><a href="#恢复包" class="headerlink" title="恢复包"></a>恢复包</h1><p>包管理系统通常可以恢复包。但是，如果删除了包中的重要文件，重新安装包但不删除无法解决问题，那么可能需要在重新安装之前删除包。对于这种情况，可能希望删除现有的拷贝并重新安装，但是不希望卸载和重新安装依赖它的所有包。为此，在删除包时，可以使用 rpm 命令的 –nodeps 选项绕过依赖关系检查。</p>
+<h1 id="RPM包的命名格式"><a href="#RPM包的命名格式" class="headerlink" title="RPM包的命名格式"></a>RPM包的命名格式</h1><p>name-version-relase.arch.rpm</p>
+<ul>
+<li>version: major.minor.release，同源代码</li>
+<li>release: rpm自身的发行号，与程序源码的发行号无关，仅用于标识对rpm包不同制作的修订；同时，release还包含此包适用的OS<br>  bash-4.2.3-3.centos5</li>
+<li>arch: 适用于的硬件平台，<ul>
+<li>x86: i386, i486, i586, i686等；</li>
+<li>x86_64: x86_64</li>
+<li>powerpc: ppc</li>
+<li>noarch: 依赖于虚拟机<blockquote>
+<p>例如：bash-4.2.3-3.centos5.x86_64.rpm</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="获取rpm包的途径："><a href="#获取rpm包的途径：" class="headerlink" title="获取rpm包的途径："></a>获取rpm包的途径：</h1><ol>
+<li><p>发行的光盘或站点服务器</p>
+<p> 镜像：  </p>
+<ul>
+<li><a href="http://mirrors.163.com" target="_blank" rel="noopener">http://mirrors.163.com</a></li>
+<li><a href="http://mirrors.sohu.com" target="_blank" rel="noopener">http://mirrors.sohu.com</a></li>
+</ul>
+</li>
+<li>项目的官网<ul>
+<li>源代码</li>
+<li>rpm包</li>
+</ul>
+</li>
+<li>很多第三方机构或个人制作并公开发布许多rpm包<ul>
+<li><a href="http://rpmfind.net" target="_blank" rel="noopener">http://rpmfind.net</a></li>
+<li><a href="http://rpm.pbone.net" target="_blank" rel="noopener">http://rpm.pbone.net</a></li>
+</ul>
+</li>
+</ol>
+<p>可靠的途径：EPEL</p>
+<ul>
+<li>Fedora-EPEL<blockquote>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><ol>
+<li>发行商,发行光盘中的包,需要升级时,官方释放出升级包;</li>
+<li>无论是Centos,还是Redhat他在光盘上提供的包并非完全包含我们能使用到的包,于是Fedora 在互联网上维护这一个叫EPEL额外的,分别面向各个版本的rpm包,所以有了发行商提供的光盘和EPEL就能够满足一般工作的需求了.但是如果对于应用场景比较严格的,还是尽量使用光盘中的包.实在不行才使用上面提供的网站去搜索相关的包.</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h1 id="YUM命令的使用"><a href="#YUM命令的使用" class="headerlink" title="YUM命令的使用"></a>YUM命令的使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">yum repolist [all|enable|available] -&gt; 显示列出所有以配置好的可用yum repo</span><br><span class="line">yum clean[all|packages|metadata|expire-cache|rpmdb|plugins] -&gt;清除缓存</span><br><span class="line">yum [list|installed|available] -&gt;显示所有安装过或可用而未安装但是存储在指定yum仓库中的包</span><br><span class="line">yum info packages_name →列出rpm包的描述</span><br><span class="line">yum grouplist –&gt;列出所有包组</span><br><span class="line">yum groupinfo &quot;Packages_group_name&quot; →显示包组信息(包组名称中含有空格需要加引号)</span><br><span class="line">yum install package_name ...  → 安装指定的程序包</span><br><span class="line">yum reinstall package_name ... -&gt; 重新安装指定的程序包</span><br><span class="line">yum check-update package_name  →检查可升级的包</span><br><span class="line">yum update package_name ... → 升级指定的程序包(若要明确升级到指定的版本,需指定版本号)</span><br><span class="line">yum downgrade package_name → 降级</span><br><span class="line">yum erase|removepackage_name ... → 卸载</span><br><span class="line">yum whatprovides|provides /path/to/somefile:查询某文件是由哪个包安装生成的;与rpm –qf 类似</span><br><span class="line">yum groupinstall &quot;group_name&quot; →安装指定的包组</span><br><span class="line">yum groupremove&quot;group_name&quot; →卸载指定的包组</span><br></pre></td></tr></table></figure>
+        </div>
+        <footer class="article-footer">
+                <span id="busuanzi_container_page_pv">
+                        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+                      </span>
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/01/25/rpm包管理/" data-id="cjcuudxuv00043oumrakuiiah" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/26/源码安装程序/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">més nou</strong>
+        <p class="article-nav-title">
+        
+            源码安装程序
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/01/22/find详解/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">find详解</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/26/源码安装程序/" class="title">源码安装程序</a></p>
+                            <p class="item-date"><time datetime="2018-01-25T18:00:30.000Z" itemprop="datePublished">2018-01-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/25/rpm包管理/" class="title">rpm包管理</a></p>
+                            <p class="item-date"><time datetime="2018-01-25T15:44:46.000Z" itemprop="datePublished">2018-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/22/find详解/" class="title">find详解</a></p>
+                            <p class="item-date"><time datetime="2018-01-22T09:36:41.000Z" itemprop="datePublished">2018-01-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/11/19/vim/" class="title">vim</a></p>
+                            <p class="item-date"><time datetime="2017-11-19T13:51:19.088Z" itemprop="datePublished">2017-11-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/11/19/Linux的用户和权限管理/" class="title">Linux的用户和权限管理</a></p>
+                            <p class="item-date"><time datetime="2017-11-19T05:59:58.183Z" itemprop="datePublished">2017-11-19</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">arxius</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+                <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+                </script>
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 John Doe</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <span id="busuanzi_container_site_pv">
+                        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                    </span>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/01/25/rpm包管理/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
