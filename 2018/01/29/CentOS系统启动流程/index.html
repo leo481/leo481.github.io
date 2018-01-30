@@ -3,22 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Linux的文件系统(FHS) | Hexo</title>
+    <title>CentOS系统启动流程 | Hexo</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="" />
     
-    <meta name="description" content="/bin: 所有用户可用的基本命令程序文件 /sbin: 供系统管理使用的工具程序 /lib: 为系统启动或跟文件系统上的应用程序(/bin,/sbin等)提供共享库，以及为内核提供内核模块  libc.so.: 动态链接的C库  ld: 运行时链接器/加载器  modules: 用于存储内核模块的目录 /lib64:">
+    <meta name="description" content="linux系统的启动流程linux系统的启动流程大致分成以下几个步骤:POST加电自检–&amp;gt;BIOS(Boot Sequence)–&amp;gt;加载对应引导上的MBR(bootloader)–&amp;gt;主引导设置加载其bootloader–&amp;gt;Kernel初始化–&amp;gt;int">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux的文件系统(FHS)">
-<meta property="og:url" content="http://yoursite.com/2017/11/18/Linux的文件系统(FHS)/index.html">
+<meta property="og:title" content="CentOS系统启动流程">
+<meta property="og:url" content="http://yoursite.com/2018/01/29/CentOS系统启动流程/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="/bin: 所有用户可用的基本命令程序文件 /sbin: 供系统管理使用的工具程序 /lib: 为系统启动或跟文件系统上的应用程序(/bin,/sbin等)提供共享库，以及为内核提供内核模块  libc.so.: 动态链接的C库  ld: 运行时链接器/加载器  modules: 用于存储内核模块的目录 /lib64: 64位系统特有的存放64位共享库的路径 /boot: 引导加载器必须用到的静">
-<meta property="og:updated_time" content="2017-11-18T15:16:47.499Z">
+<meta property="og:description" content="linux系统的启动流程linux系统的启动流程大致分成以下几个步骤:POST加电自检–&amp;gt;BIOS(Boot Sequence)–&amp;gt;加载对应引导上的MBR(bootloader)–&amp;gt;主引导设置加载其bootloader–&amp;gt;Kernel初始化–&amp;gt;intrd–&amp;gt;/etc/int进程加载/etc/inittab,流程图如下: 每个流程的详解POST开机自检：电脑主机打">
+<meta property="og:image" content="https://hexo-1256034174.cos.ap-guangzhou.myqcloud.com/centos%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.jpg">
+<meta property="og:updated_time" content="2018-01-29T16:01:02.318Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux的文件系统(FHS)">
-<meta name="twitter:description" content="/bin: 所有用户可用的基本命令程序文件 /sbin: 供系统管理使用的工具程序 /lib: 为系统启动或跟文件系统上的应用程序(/bin,/sbin等)提供共享库，以及为内核提供内核模块  libc.so.: 动态链接的C库  ld: 运行时链接器/加载器  modules: 用于存储内核模块的目录 /lib64: 64位系统特有的存放64位共享库的路径 /boot: 引导加载器必须用到的静">
+<meta name="twitter:title" content="CentOS系统启动流程">
+<meta name="twitter:description" content="linux系统的启动流程linux系统的启动流程大致分成以下几个步骤:POST加电自检–&amp;gt;BIOS(Boot Sequence)–&amp;gt;加载对应引导上的MBR(bootloader)–&amp;gt;主引导设置加载其bootloader–&amp;gt;Kernel初始化–&amp;gt;intrd–&amp;gt;/etc/int进程加载/etc/inittab,流程图如下: 每个流程的详解POST开机自检：电脑主机打">
+<meta name="twitter:image" content="https://hexo-1256034174.cos.ap-guangzhou.myqcloud.com/centos%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.jpg">
     
 
     
@@ -131,14 +133,14 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Linux的文件系统(FHS)" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-CentOS系统启动流程" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Linux的文件系统(FHS)
+        CentOS系统启动流程
         </h1>
     
 
@@ -148,8 +150,8 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/11/18/Linux的文件系统(FHS)/" class="article-date">
-            <time datetime="2017-11-18T13:49:28.986Z" itemprop="datePublished">2017-11-18</time>
+        <a href="/2018/01/29/CentOS系统启动流程/" class="article-date">
+            <time datetime="2018-01-29T13:24:47.000Z" itemprop="datePublished">2018-01-29</time>
         </a>
     </div>
 
@@ -158,26 +160,84 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <ul>
-<li>/bin: 所有用户可用的基本命令程序文件</li>
-<li>/sbin: 供系统管理使用的工具程序</li>
-<li>/lib: 为系统启动或跟文件系统上的应用程序(/bin,/sbin等)提供共享库，以及为内核提供内核模块<br>  libc.so.<em>: 动态链接的C库<br>  ld</em>: 运行时链接器/加载器<br>  modules: 用于存储内核模块的目录</li>
-<li>/lib64: 64位系统特有的存放64位共享库的路径</li>
-<li>/boot: 引导加载器必须用到的静态文件; kernel, initramfs(initr), grub等</li>
-<li>/etc: editable text configuration, 系统程序的配置文件，只能是静态</li>
-<li>/dev: 存储特殊文件或设备文件(字符设备，块设备)</li>
-<li>/usr: unix system resource, 存放各种程序和数据<br>  bin, sbin: 所有可执行文件<br>  lib, lib64: 所有可执行文件需要到的库<br>  include: C程序头文件，编译时需要用到<br>  share: 命令手册和自带文档<br>  local: 存放手动安装的程序, 跟/usr同一种层级结构<br>  src: 程序源码文件<br>  X11R6: X-Window</li>
-<li>/root: 管理员家目录</li>
-<li>/home: 普通的家目录，每个用户都有一个子目录</li>
-<li>/mnt: 其它文件系统的临时挂载点</li>
-<li>/media: 便携式设备挂载点，如cdrom</li>
-<li>/opt: 附加应用程序的安装路径</li>
-<li>/srv: 当前主机为服务提供的数据</li>
-<li>/tmp: 临时存储文件的目录，所有用户可以访问</li>
-<li>/var: 存储经常发生彼岸花的数据的目录</li>
-<li>/proc: 基于内存的虚拟文件系统，用于为内核及进程存储其相关信息；多为讷河参数，例如net.ipv4/ip_forward, 存储在/proc/sys/</li>
-<li>/sys: sysfs虚拟文件系统提供了一种比proc更为理想的访问内核数据的途径；作用在于管理Linux设备提供同意模型的接口</li>
+            <h1 id="linux系统的启动流程"><a href="#linux系统的启动流程" class="headerlink" title="linux系统的启动流程"></a>linux系统的启动流程</h1><p>linux系统的启动流程大致分成以下几个步骤:<br>POST加电自检–&gt;BIOS(Boot Sequence)–&gt;加载对应引导上的MBR(bootloader)–&gt;主引导设置加载其bootloader–&gt;Kernel初始化–&gt;intrd–&gt;/etc/int进程加载/etc/inittab,流程图如下:<br><img src="https://hexo-1256034174.cos.ap-guangzhou.myqcloud.com/centos%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.jpg" alt="centos启动流程"></p>
+<h1 id="每个流程的详解"><a href="#每个流程的详解" class="headerlink" title="每个流程的详解"></a>每个流程的详解</h1><h2 id="POST开机自检："><a href="#POST开机自检：" class="headerlink" title="POST开机自检："></a>POST开机自检：</h2><p>电脑主机打开电源的时候，随后会听到滴的一声，系统启动开始了开机自检（POST-power on selftest）自检开始），这个过程中主要是检测计算机硬件设备比如：CPU，内存，主板，显卡，CMOS等设备是否有故障存在，如果有硬件故障的话将按两种情况理：对于严重故障(致命性故障)则停机，此时由于各种初始化操作还没完成，不能给出任何提示或信号；对于非严重故障则给出提示或声音报警信号，等待用户处理），如果没有故障，POST完整自己的接力任务，将尾部工作交接给BIOS处理。</p>
+<h2 id="BIOS："><a href="#BIOS：" class="headerlink" title="BIOS："></a>BIOS：</h2><p>计算机加电自检完成后第一个读取的地方就是就是BIOS（Basic Input Output System，基础输入输出系统），BIOS里面记录了主机板的芯片集与相关设置，如CPU与接口设备的通信频率、启动设备的搜索顺序、硬盘的大小与类型、系统时间、外部总线、各种接口设备的I/O地址、已经与CPU通信的IRQ中断信息，所以，启动如果要顺利启动，首先要读取BIOS设置。但是如果BIOS找不到任何的引导设备那么启动将会失败.</p>
+<p>按照BIOS所设定的系统启动流程，如果检测通过，则根据引导次序(Boot Sequence)开始在第一台设备上支持启动程序，我们的启动设备主要包括硬盘、USB、SD等，我们一般用的是硬盘，然后进行读取第一个设备就是硬盘，第一个要读去的就是该硬盘的主引导记录MBR（Master Boot Record），然后系统可以根据启动区安装的引导加载程序（Boot Loader）开始执行核心识别的工作。【MBR一共是512字节,其中446字节是加载内核文件由它确定选择的操作系统内核】</p>
+<h2 id="Boot-Loader-加载Grub程序"><a href="#Boot-Loader-加载Grub程序" class="headerlink" title="Boot Loader 加载Grub程序"></a>Boot Loader 加载Grub程序</h2><p>在这个过程中主要靠Grub的引导开始的，Grub分为3个阶段：</p>
+<ul>
+<li>stage1：主要是Boot loader,位于MBR中，它的存在是为了引导stage2</li>
+<li>stage 1.5:位于boot分区(基本磁盘分区)，为识别内核文件系统提供文件系统识别扩展</li>
+<li>stage2:也是位于boot分区(基本磁盘分区)，Grub的引导程序</li>
 </ul>
+<p>在/boot/grub/下面我们看到了熟悉的stage1，stage2及grub工具的配置文件grub.conf，那么grub.conf内都定义了什么呢?</p>
+<p>首先我们先了解一下grub的功能有哪些:</p>
+<h3 id="Grub的功能"><a href="#Grub的功能" class="headerlink" title="Grub的功能"></a>Grub的功能</h3><p><em>选择要启动的内核或系统</em></p>
+<p>如果系统有多个内核并存时我们可以通过在系统启动倒计时时我们按任意键进入选择需要用的内核或系统，但是我的系统只有一个操作系统，所以它默认时间一到就进入当前的系统了</p>
+<p>当系统启动到跑进度条时我们可以输入e键盘进入<strong>交互式</strong>界面</p>
+<p>grub的配置文件</p>
+<ul>
+<li>centos6: /etc/grub.conf</li>
+<li>centos7: /boot/grub2.cfg</li>
+</ul>
+<p>因为centos7改用了grub2,以自动生成配置,所以这里以centos6为例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vim grub.conf</span><br><span class="line"># grub.conf generated by anaconda</span><br><span class="line">#</span><br><span class="line"># Note that you do not have to rerun grub after makingchanges to this file</span><br><span class="line"># NOTICE:You havea /boot partition.This means that</span><br><span class="line">#allkernel and initrd paths are relative to /boot/, eg.</span><br><span class="line">#root(hd0,0)</span><br><span class="line">#kernel/vmlinuz-version ro root=/dev/mapper/vg0-root</span><br><span class="line">#initrd/initrd-[generic-]version.img</span><br><span class="line">#boot=/dev/sda</span><br><span class="line">default=0 #→操作系统或内核的标题</span><br><span class="line">timeout=5 #→选择内核文件超时时间</span><br><span class="line">splashimage=(hd0,0)/grub/splash.xpm.gzgrub #→界面下的系统启动背景图片</span><br><span class="line">hiddenmenu #→菜单隐藏</span><br><span class="line">title CentOS (2.6.32-431.el6.x86_64)  #→grub标题</span><br><span class="line">root(hd0,0) #→设定内核文件所在的分区为grub的根,Device表示方式: 在grub中，统统以hd开头，并紧跟一个数字做各磁盘设备的标记，从0开始编号 Part表示方式：代表分区，从0开始编号</span><br><span class="line">kernel/vmlinuz-2.6.32-431.el6.x86_64 ro root=/dev/mapper/vg0-root rhgb quiet #→定义要使用的内核文件，后面可附加传递给内核的启动参数</span><br><span class="line">initrd/initramfs-2.6.32-431.el6.x86_64.img #→指定为内核提供额外驱动等功能的ram disk或ram fs文件,通常为cpio归档，并使用gzip压缩；通常以.img作为文件名后缀</span><br></pre></td></tr></table></figure></p>
+<h2 id="Kernel初始化"><a href="#Kernel初始化" class="headerlink" title="Kernel初始化"></a>Kernel初始化</h2><p>根据Grub内的定义，grub读取完毕后就把下面的工作交个内核了。kernel主要是完成系统硬件探测及硬件驱动的初始化，并且以读写的方式挂载根文件系统（根切换），那么这里就出现了一个“先有鸡还是先有蛋的文件了”，具体是什么那？</p>
+<p>要想访问真正的根文件系统（rootfs）的话，就必须加载根文件系统中的设备，这时根文件系统又没有挂载，要挂载根文件系统又得加载根文件系统中的驱动程序，哪怎么办呢？为了解决这个问题，这是就用到了initrd文件了。</p>
+<p>再来说下kernel初始化所要工作的内容做下简单总结：</p>
+<p>探测硬件-&gt;加载驱动（initrd)-&gt;挂载根文件系统-&gt;rootfs(/sbin/init)</p>
+<p>内核空间通过一个间接的initrd(微型linux)向用户空间的/sbin/init过渡，所以gurb开始引导内核转向initrd。initrd：一个虚拟的文件系统，里面有lib、bin、sbin、usr、proc、sys、var、dev、boot等一些目录，其实你会发现里面的目录有点像真的/对吧，所以我们称之为虚拟的根文件系统，作用就是将kernel和真的根文件系统建立关联关系，让kernel去initrd中加载根文件系统所需要的驱动程序，并以读写的方式挂载根文件系统，并让执行用户空间当中第一个进程init.</p>
+<p>这里要需要做一下说明:<strong>initrd和initramfs的区别，首先initrd是系统加载驱动时将内存模拟为磁盘设备，需要再次在内核中缓存，而initramfs却将内存直接模拟为文件系统，这样它就比起initrd显得更加的优越。所以在Centos5上面的initrd在后来的6上面改成了后者.</strong></p>
+<h2 id="执行-sbin-init"><a href="#执行-sbin-init" class="headerlink" title="执行/sbin/init"></a>执行/sbin/init</h2><p>init会读取系统内的/etc/inittab文件，来完成系统系统的初始化工作。下面来分析一下inittab这个配置文件内的详细内容.</p>
+<p>文件中定义了7个linux系统的运行级别</p>
+<ul>
+<li>0：关机</li>
+<li>1：单用户模式(root, 无须登录), single, 维护模式；</li>
+<li>2: 多用户模式，会启动网络功能，但不会启动NFS；维护模式；</li>
+<li>3：多用户模式，正常模式；文本界面；</li>
+<li>4：预留级别；可同3级别；</li>
+<li>5：多用户模式，正常模式；图形界面；</li>
+<li>6：重启</li>
+</ul>
+<p>一般默认级别是3,5</p>
+<p>切换级别使用命令:</p>
+<pre><code>init #
+</code></pre><p>查看级别使用命令:</p>
+<pre><code>runlevel
+</code></pre><p>文件中每一行定义一种action以及与之对应的process<br>id:runlevel:action:process</p>
+<ul>
+<li>action:<ol>
+<li>wait: 切换至此级别运行一次；</li>
+<li>respawn：此process终止，就重新启动之；</li>
+<li>initdefault：设定默认运行级别；process省略；</li>
+<li>sysinit：设定系统初始化方式，此处一般为指定/etc/rc.d/rc.sysinit；</li>
+<li>…</li>
+</ol>
+</li>
+</ul>
+<h3 id="chkconfig命令"><a href="#chkconfig命令" class="headerlink" title="chkconfig命令"></a>chkconfig命令</h3><p>查看服务在所有级别的启动或关闭设定情形：</p>
+<pre><code>chkconfig [--list] [name]
+</code></pre><p>添加：</p>
+<p><em>SysV的服务脚本放置于/etc/rc.d/init.d (/etc/init.d)</em></p>
+<pre><code>chkconfig --add name
+</code></pre><p>删除：</p>
+<pre><code>chkconfig --del name
+</code></pre><p>修改指定的链接类型</p>
+<pre><code>chkconfig [--level levels] name &lt;on|off|reset&gt;
+    --level LLLL: 指定要设置的级别；省略时表示2345；
+</code></pre><h2 id="执行-etc-rc-d-rc-sysinit-系统初始化脚本"><a href="#执行-etc-rc-d-rc-sysinit-系统初始化脚本" class="headerlink" title="执行    /etc/rc.d/rc.sysinit: 系统初始化脚本"></a>执行    /etc/rc.d/rc.sysinit: 系统初始化脚本</h2><ol>
+<li>设置主机名；</li>
+<li>设置欢迎信息；</li>
+<li>激活udev和selinux; </li>
+<li>挂载/etc/fstab文件中定义的文件系统；</li>
+<li>检测根文件系统，并以读写方式重新挂载根文件系统；</li>
+<li>设置系统时钟；</li>
+<li>激活swap设备；</li>
+<li>根据/etc/sysctl.conf文件设置内核参数；</li>
+<li>激活lvm及software raid设备；</li>
+<li>加载额外设备的驱动程序；</li>
+<li>清理操作；</li>
+</ol>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>/sbin/init –&gt; (/etc/inittab) –&gt; 设置默认运行级别 –&gt; 运行系统初始脚本、完成系统初始化 –&gt; 关闭对应下需要关闭的服务，启动需要启动服务 –&gt; 设置登录终端 </p>
 
         </div>
         <footer class="article-footer">
@@ -188,7 +248,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2017/11/18/Linux的文件系统(FHS)/" data-id="cjd1v37yi0006zsumyqp0j9iy" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="http://yoursite.com/2018/01/29/CentOS系统启动流程/" data-id="cjd1v37x70000zsumh98gprv0" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -325,16 +385,22 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/11/19/Linux的用户和权限管理/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/01/30/CentOS网络管理/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">més nou</strong>
         <p class="article-nav-title">
         
-            Linux的用户和权限管理
+            CentOS网络管理
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
+    
+        <a href="/2018/01/26/源码安装程序/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antic</strong>
+        <p class="article-nav-title">源码安装程序</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
     
 </nav>
 
@@ -464,7 +530,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/2017/11/18/Linux的文件系统(FHS)/';
+    var disqus_url = 'http://yoursite.com/2018/01/29/CentOS系统启动流程/';
     
     (function() {
     var dsq = document.createElement('script');
