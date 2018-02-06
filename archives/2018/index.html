@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Arxiu: 2018 | Hexo</title>
+    <title>Archive: 2018 | Hexo</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -59,13 +59,13 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inici</a>
+                                    <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                         
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about/index.html">Quant a</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
                         </ul>
@@ -73,7 +73,7 @@
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Cercar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -94,8 +94,8 @@
         TRANSLATION: {
             POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'categories',
-            TAGS: 'etiquetes',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -121,7 +121,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Arxiu: 2018
+    <i class="icon fa fa-archive"></i>Archive: 2018
     </h1>
 </div>
                         <div class="main-body-content">
@@ -148,6 +148,103 @@
             <div class="category">
             
             </div>
+            <div class="date"><time datetime="2018-02-06T14:22:42.000Z" itemprop="datePublished">2018-02-06</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2018/02/06/浅谈如何搭建私有CA签署证书/">浅谈如何搭建私有CA签署证书</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            在现今电子商务越来越发达的时代中,交易安全是其中一个重要的环节,而CA则是交易安全的实现
+我们来看看维基百科中对CA(数字证书认证机构)的介绍
+
+实验环境:2台CentOS主机,1台用作签署CA,另1台用作申请签署
+
+CA工作目录/etc/pki/tls/openssl.cnf中有CA默认的工作目录说明123456789101112131415dir             = /etc/pki/
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            
+            </div>
+            <div class="date"><time datetime="2018-02-06T08:56:44.000Z" itemprop="datePublished">2018-02-06</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2018/02/06/bash-shell的字符串处理-转/">bash shell的字符串处理(转)</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            字符串切片，对于变量而言例如：name=nihaoma , echo ${name:2:3} 打印的结果为：hao例如：name=nihaoma , echo ${name: -4} 打印的结果为：aoma
+基于模式取字符串，对于变量而言
+${var#*word}：其中word是指定的分隔符。功能：自左向右，查找var变量所存储的字符串中，第一次出现的word分隔符，删除字符串开头至此分隔符处的所
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            
+            </div>
+            <div class="date"><time datetime="2018-02-06T04:23:49.000Z" itemprop="datePublished">2018-02-06</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2018/02/06/bash-shell中的数组/">bash shell中的数组</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            如果以前学过java,c#或者javascript等高级语言的话,那么bash shell中的数组操作与其有一定的差距,下面来熟悉一下Bash Shell的数组
+##声明数组12declare  -a  NAME：声明索引数组；declare  -A  NAME：声明关联数组；
+##赋值方式
+
+一次只赋值一个元素； ARRAY_NAME[INDEX]=value
+一次赋值全部元素；ARRAY_NA
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            
+            </div>
             <div class="date"><time datetime="2018-01-30T13:08:09.000Z" itemprop="datePublished">2018-01-30</time></div>
         </div>
         
@@ -164,10 +261,14 @@ IP地址分类12345678910111213141516171819202122232425262728293031A类：    �
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -192,14 +293,10 @@ IP地址分类12345678910111213141516171819202122232425262728293031A类：    �
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -225,10 +322,14 @@ IP地址分类12345678910111213141516171819202122232425262728293031A类：    �
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -253,14 +354,10 @@ Red Hat开发的Red Hat Package Manager(RPM),以及Debian的APT是如今主流�
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -304,7 +401,7 @@ CONDITION
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -371,6 +468,33 @@ CONDITION
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/02/06/浅谈如何搭建私有CA签署证书/" class="title">浅谈如何搭建私有CA签署证书</a></p>
+                            <p class="item-date"><time datetime="2018-02-06T14:22:42.000Z" itemprop="datePublished">2018-02-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/02/06/bash-shell的字符串处理-转/" class="title">bash shell的字符串处理(转)</a></p>
+                            <p class="item-date"><time datetime="2018-02-06T08:56:44.000Z" itemprop="datePublished">2018-02-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/02/06/bash-shell中的数组/" class="title">bash shell中的数组</a></p>
+                            <p class="item-date"><time datetime="2018-02-06T04:23:49.000Z" itemprop="datePublished">2018-02-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
                             <p class="item-title"><a href="/2018/01/30/CentOS网络管理/" class="title">CentOS网络管理</a></p>
                             <p class="item-date"><time datetime="2018-01-30T13:08:09.000Z" itemprop="datePublished">2018-01-30</time></p>
                         </div>
@@ -385,33 +509,6 @@ CONDITION
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2018/01/26/源码安装程序/" class="title">源码安装程序</a></p>
-                            <p class="item-date"><time datetime="2018-01-25T18:00:30.000Z" itemprop="datePublished">2018-01-26</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2018/01/25/rpm包管理/" class="title">rpm包管理</a></p>
-                            <p class="item-date"><time datetime="2018-01-25T15:44:46.000Z" itemprop="datePublished">2018-01-25</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2018/01/22/find详解/" class="title">find详解</a></p>
-                            <p class="item-date"><time datetime="2018-01-22T09:36:41.000Z" itemprop="datePublished">2018-01-22</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -422,9 +519,9 @@ CONDITION
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">arxius</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
         </div>
     </div>
 

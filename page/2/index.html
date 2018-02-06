@@ -3,22 +3,16 @@
 <head>
     <meta charset="utf-8">
     
-    <title>vim | Hexo</title>
+    <title>Hexo</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="" />
-    
-    <meta name="description" content="前身 vi: visual interface所以 vim: vi improved 类型    模块化的编辑器 基本模式    编辑模式，又叫命令模式    输入模式    末行模式 打开文件    vim [OPTIONS] [FILE..]        +#: 打开后，光标的地方        +/PATTEN">
-<meta property="og:type" content="article">
-<meta property="og:title" content="vim">
-<meta property="og:url" content="http://yoursite.com/2017/11/19/vim/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前身 vi: visual interface所以 vim: vi improved 类型    模块化的编辑器 基本模式    编辑模式，又叫命令模式    输入模式    末行模式 打开文件    vim [OPTIONS] [FILE..]        +#: 打开后，光标的地方        +/PATTEN: 打开后，光标置于匹配到的行 模式转换    默认是编辑模式 编辑模式 --&amp;">
-<meta property="og:updated_time" content="2018-01-22T09:27:17.589Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vim">
-<meta name="twitter:description" content="前身 vi: visual interface所以 vim: vi improved 类型    模块化的编辑器 基本模式    编辑模式，又叫命令模式    输入模式    末行模式 打开文件    vim [OPTIONS] [FILE..]        +#: 打开后，光标的地方        +/PATTEN: 打开后，光标置于匹配到的行 模式转换    默认是编辑模式 编辑模式 --&amp;">
+<meta name="twitter:title" content="Hexo">
     
 
     
@@ -127,279 +121,64 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    uncategorized
+    <em class="page-title-link" data-url="home">Home</em>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-vim" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
+                            
+
+    
+    
         
-            <header class="article-header">
-                
+        
+        <section class="archives-wrap">
+            <div class="archive-year-wrap">
+                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
+            </div>
+            <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            
+            </div>
+            <div class="date"><time datetime="2017-11-18T13:49:28.986Z" itemprop="datePublished">2017-11-18</time></div>
+        </div>
+        
     
         <h1 class="article-title" itemprop="name">
-        vim
+        <a href="/2017/11/18/Linux的文件系统(FHS)/">Linux的文件系统(FHS)</a>
         </h1>
     
 
-            </header>
-        
-        
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2017/11/19/vim/" class="article-date">
-            <time datetime="2017-11-19T13:51:19.088Z" itemprop="datePublished">2017-11-19</time>
-        </a>
-    </div>
-
-                
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <p>前身 vi: visual interface<br>所以 vim: vi improved</p>
-<p>类型<br>    模块化的编辑器</p>
-<p>基本模式<br>    编辑模式，又叫命令模式<br>    输入模式<br>    末行模式</p>
-<p>打开文件<br>    vim [OPTIONS] [FILE..]<br>        +#: 打开后，光标的地方<br>        +/PATTEN: 打开后，光标置于匹配到的行</p>
-<p>模式转换<br>    默认是编辑模式</p>
-<pre><code>编辑模式 --&gt; 输入模式
-    i: 光标处输入
-    a: 光标后输入
-    o: 光标下打开新行
-    O: 光标上打开
-    I: 行首输入
-    A: 行尾输入
-
-输入模式 --&gt; 编辑模式
-    ESC
-
-编辑模式 --&gt; 末行模式
-    :
-
-末行模式 --&gt; 编辑模式
-    ESC
-</code></pre><p>关闭文件<br>    编辑模式下<br>    ZZ<br>    :wq 保存并退出<br>    :q 退出<br>    :q! 不保存退出<br>    :x 保存并退出<br>    :w /PATH/TO/SOMEWHERE 另存为 </p>
-<p>光标跳转<br>    字符间跳转<br>        h: 左<br>        j: 下<br>        k: 上<br>        l: 右</p>
-<pre><code>    #COMMAND: 跳转多个字符
-
-单词间跳转
-    w: 下一单词词首
-    e: 当前或后一个单词词尾
-    b: 当前或前一个单词词首
-
-行首行尾跳转
-    ^: 行首
-    $: 行尾
-
-行间跳转
-    G: 最后一行
-    1G, gg: 第一行
-    #G: 指定行 
-
-翻屏
-    ctrl+f: 向后翻一屏
-    ctrl+b: 向前
-    ctrl+d: 向后翻半屏
-    ctrl+f: 向前
-    enter: 向后翻一行
-
-编辑命令
-
-    字符编辑
-        x: 删除当前光标字符
-        #x: 
-        xp: 交换光标与后一个字符的位置
-
-    字符替换
-        r
-
-    删除命令,相当于剪切
-        d: 
-        d$: 
-        d^: 
-        dw: 删除一个词
-        de:
-        db:
-        dd:
-        #dd: 
-
-    复制命令(yank)
-        y: 复制当前
-        ...同d命令
-
-    粘贴命令(paste)
-        p: 粘贴到光标后或行下方
-        P: 粘贴到光标前或行上方
-
-    改变命令(change)
-        删除后进入输入模式
-        c..同d
-
-    可视化模式
-        v: 按字符选定
-        V: 按行选定
-
-        结合编辑命令使用: d, c, y
-
-    撤销命令(undo)
-        u: 撤销一次操作
-        #u: 撤销多次
-
-    重复操作
-        .: 重复一次
-
-末行模式
-
-    地址定界
-        :start_pos[,end_pos]
-            #: 
-            .: 当前
-            $: 最后一行
-            #,#:
-            #,+#: 
-            %: 全文
-            /pattern/: 光标处到行尾第一次匹配到的行
-            /pat1/,/pat2/: 
-
-        联合编辑命令一起使用
-            d
-            y
-            c
-            w /PATH/TO/SOMEWHERE: 保存范围内文本到指定文件中
-            r /PATH/FROM/SOMEWHERE: 从指定文件中读取并插入到指定位置
-
-    查找
-        /PATTERN: 光标处到尾部所有匹配
-        ?PATTERN: 光标到首部所有匹配
-
-    替换
-        s/要查找的内容/替换的内容/修饰符
-            替换的内容: 可以用&amp;关键字引用前面分组的文本
-            修饰符:
-                i: 忽略大小写
-                g: 全局替换
-
-        可把分隔符替换为其它非常用字符:
-            s@@@
-            s###
-
-多文件功能:
-    vim FILE1 FILE2
-        :next 下一个
-        :prev 上一个
-        :first 第一个
-        :last 最后一个
-
-    退出:
-        :wqall 保存并退出所有文件
-
-    多窗口
-        -o: 水平分割
-        -O: 垂直分割
-
-        切换: ctrl+w,arrow
-
-        单文件分割
-            ctrl+w, s: 水平分割
-            ctrl+w, v: 垂直分割
-
-额外选项:
-    1. 显示行号
-            set nu
-            set nonu
-    2. 括号匹配高亮
-            set sm
-            set nosm
-    3. 自动缩进
-            set ai
-            set noai
-    4. 语法高亮
-            syntax on
-            syntax off
-</code></pre>
-        </div>
-        <footer class="article-footer">
-                <span id="busuanzi_container_page_pv">
-                        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-                      </span>
+        <p class="article-excerpt">
             
-
-
-
-    <a data-url="http://yoursite.com/2017/11/19/vim/" data-id="cjdbtkqj70009j8umfojbtul7" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-        </footer>
+/bin: 所有用户可用的基本命令程序文件
+/sbin: 供系统管理使用的工具程序
+/lib: 为系统启动或跟文件系统上的应用程序(/bin,/sbin等)提供共享库，以及为内核提供内核模块  libc.so.: 动态链接的C库  ld: 运行时链接器/加载器  modules: 用于存储内核模块的目录
+/lib64: 64位系统特有的存放64位共享库的路径
+/boot: 引导加载器必须用到的静
+        </p>
     </div>
 </article>
-
-    <section id="comments">
     
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
+        </div>
     
-    </section>
+
+
+    </div></section>
+
+
+    <nav id="page-nav">
+        <span class="pages">Page 2 of 2</span>
+        <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
 
 
                         </div>
@@ -460,29 +239,6 @@
             
         </ul>
     </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2018/01/22/find详解/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            find详解
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2017/11/19/Linux的用户和权限管理/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Linux的用户和权限管理</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
     
     <div class="widgets-container">
         
@@ -609,13 +365,11 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/2017/11/19/vim/';
-    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
