@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>nginx安装与配置 | Hexo</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="nginx简介Nginx（发音同 engine x）是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。由俄罗斯的程序设计师Igor Sysoev所开发，最初供俄国大型的入口网站及搜寻引擎Rambler（俄文：Рамблер）使用。其特点是占有内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx安装与配置">
+<meta property="og:url" content="http://yoursite.com/2018/12/12/nginx安装与配置/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="nginx简介Nginx（发音同 engine x）是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。由俄罗斯的程序设计师Igor Sysoev所开发，最初供俄国大型的入口网站及搜寻引擎Rambler（俄文：Рамблер）使用。其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页伺服器中表现较好.">
+<meta property="og:image" content="https://hexo-1256034174.cos.ap-guangzhou.myqcloud.com/nginx%E6%9E%B6%E6%9E%84.png">
+<meta property="og:updated_time" content="2018-12-24T03:31:22.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nginx安装与配置">
+<meta name="twitter:description" content="nginx简介Nginx（发音同 engine x）是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。由俄罗斯的程序设计师Igor Sysoev所开发，最初供俄国大型的入口网站及搜寻引擎Rambler（俄文：Рамблер）使用。其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页伺服器中表现较好.">
+<meta name="twitter:image" content="https://hexo-1256034174.cos.ap-guangzhou.myqcloud.com/nginx%E6%9E%B6%E6%9E%84.png">
+    
+
+    
+        <link rel="alternate" href="/" title="Hexo" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-nginx安装与配置" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        nginx安装与配置
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/12/nginx安装与配置/" class="article-date">
+            <time datetime="2018-12-12T02:57:41.000Z" itemprop="datePublished">2018-12-12</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="nginx简介"><a href="#nginx简介" class="headerlink" title="nginx简介"></a>nginx简介</h2><p>Nginx（发音同 engine x）是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。由俄罗斯的程序设计师Igor Sysoev所开发，最初供俄国大型的入口网站及搜寻引擎Rambler（俄文：Рамблер）使用。其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页伺服器中表现较好.目前中国大陆使用nginx网站用户有：新浪、网易、 腾讯，另外知名的微网志Plurk也使用nginx。<br>在高连接并发的情况下，Nginx是Apache服务器不错的替代品。Nginx为我们选择了 epoll and kqueue作为开发模型。</p>
+<h3 id="Epoll"><a href="#Epoll" class="headerlink" title="Epoll"></a>Epoll</h3><ul>
+<li>支持一个进程打开大数目的socket描述符</li>
+<li>IO效率不随FD数目增加而线性下降</li>
+<li>使用mmap加速内核与用户空间的消息传递</li>
+<li>边缘触发和水平触发<h3 id="nginx优点"><a href="#nginx优点" class="headerlink" title="nginx优点"></a>nginx优点</h3></li>
+</ul>
+<ol>
+<li>高并发连接：官方测试能够支撑5万并发连接，在实际生产环境中跑到2～3万并发连接数。</li>
+<li>内存消耗少：在3万并发连接下，开启的10个Nginx 进程才消耗150M内存（15M*10=150M）。</li>
+<li>配置文件非常简单：风格跟程序一样通俗易懂。</li>
+<li>成本低廉：Nginx为开源软件，可以免费使用。而购买F5 BIG-IP、NetScaler等硬件负载均衡交换机则需要十多万至几十万人民币。</li>
+<li>支持Rewrite重写规则：能够根据域名、URL的不同，将 HTTP 请求分到不同的后端服务器群组。</li>
+<li>内置的健康检查功能：如果 Nginx Proxy 后端的某台 Web 服务器宕机了，不会影响前端访问。</li>
+<li>节省带宽：支持 GZIP 压缩，可以添加浏览器本地缓存的 Header 头。</li>
+<li>稳定性高：用于反向代理，宕机的概率微乎其微。</li>
+<li>模块化设计:模块可以动态编译</li>
+<li>外围支持好：-文档全、二次开发和模块较多</li>
+<li>支持热部署：可以不停机重载配置文件</li>
+<li>支持事件驱动、AIO、mmap等性能优化<h3 id="nginx架构"><a href="#nginx架构" class="headerlink" title="nginx架构"></a>nginx架构</h3><img src="https://hexo-1256034174.cos.ap-guangzhou.myqcloud.com/nginx%E6%9E%B6%E6%9E%84.png" alt="nginx架构"><h3 id="提前准备"><a href="#提前准备" class="headerlink" title="提前准备"></a>提前准备</h3></li>
+<li>安装gcc</li>
+<li>安装pcre<code>yum install pcre*</code></li>
+<li>安装zlib<code>yum install zlib zlib-devel</code></li>
+<li>安装ssl<code>yum install openssl openssl-devel</code><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3></li>
+<li>配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.configure  --prefix=/usr/common/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre=/usr/common/pcre</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>还有各种配置,参考<a href="nginx.org">nginx.org</a></p>
+<ol>
+<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="主要操作指令"><a href="#主要操作指令" class="headerlink" title="主要操作指令"></a>主要操作指令</h3><h4 id="验证配置"><a href="#验证配置" class="headerlink" title="验证配置"></a>验证配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/common/nginx -t</span><br></pre></td></tr></table></figure>
+<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><p>/usr/common/nginx</p>
+<h4 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h4><p>/usr/common/nginx -s stop</p>
+<h4 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h4><p>/usr/common/nginx -s reload</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>一般配置文件在<code>安装路径/conf/nginx.conf</code></p>
+<h4 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h4><ul>
+<li>nginx.conf：应用程序的基本配置文件 </li>
+<li>mime.types：MIME类型关联的扩展文件</li>
+<li>fastcgi.conf：与fastcgi相关的配置</li>
+<li>proxy.conf：与proxy相关的配置</li>
+<li>sites.conf：配置Nginx提供的网站，包括虚拟主机<h3 id="模块分类"><a href="#模块分类" class="headerlink" title="模块分类"></a>模块分类</h3>核心模块、事件模块、标准Http模块、可选Http模块、邮件模块、第三方模块和补丁等<h4 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h4></li>
+<li>worker_rlimit_nofile: 指定所有worker进程能够打开的最大文件句柄数</li>
+<li>worker_processes: worker进程数,略少于cpu核心数</li>
+<li>worker_cpu_affinity cpumask:绑定cpu,避免切换带来的消耗<h4 id="事件模块"><a href="#事件模块" class="headerlink" title="事件模块"></a>事件模块</h4></li>
+<li>accept_mutex {on|off}: master调度各worker时是否使用轮询进行负载均衡</li>
+<li>use [epoll| rtsig|select|poll]: 指明使用的事件模型</li>
+<li>worker_connections: 一个worker进程能够处理的最大并发连接数<h4 id="HTTP模块"><a href="#HTTP模块" class="headerlink" title="HTTP模块"></a>HTTP模块</h4>结构<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">http &#123;  //协议级别</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line">		gzip  on;</span><br><span class="line">    server &#123;  //服务器级别</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;  //请求级别</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">			error_page 404 /404_customed.html</span><br><span class="line">			deny 192.129.12.1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="location区段"><a href="#location区段" class="headerlink" title="location区段"></a>location区段</h5><ol>
+<li>没有修饰符 表示：必须以指定模式开始</li>
+<li>= 表示：必须与指定的模式精确匹配</li>
+<li>~ 表示：指定的正则表达式要区分大小写</li>
+<li>~* 表示：指定的正则表达式不区分大小写</li>
+<li>^~ 类似于无修饰符的行为，也是以指定模式开始，不同的是，如果模式匹配，那么就停止搜索其他模式了<h5 id="自定义响应首部"><a href="#自定义响应首部" class="headerlink" title="自定义响应首部"></a>自定义响应首部</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_headers name value</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="Rewrite-模块"><a href="#Rewrite-模块" class="headerlink" title="Rewrite 模块"></a>Rewrite 模块</h4><p>用来执行URL重定向。这个机制有利于去掉恶意访问的url，也有利于搜索引擎优化(SEO)。<br>基本语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite regex replacement flag</span><br></pre></td></tr></table></figure></p>
+<p>flag:</p>
+<ul>
+<li>last: 循环</li>
+<li>break: 生效后不再循环</li>
+<li>redirect: 临时重定向,302响应码</li>
+<li>permanent: 永久重定向,301响应码<br>regex基本语法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">^ ：必须以^后的实体开头</span><br><span class="line">$ ：必须以$前的实体结尾</span><br><span class="line">.   ：匹配任意字符</span><br><span class="line">[ ] ：匹配指定字符集内的任意字符</span><br><span class="line">[^ ] ：匹配任何不包括在指定字符集内的任意字符串</span><br><span class="line">| ：匹配 | 之前或之后的实体</span><br><span class="line">() ：分组，组成一组用于匹配的实体，通常会有|来协助</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="if语法"><a href="#if语法" class="headerlink" title="if语法"></a>if语法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (condition) &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p>应用环境：server, location<br>操作符:</p>
+<ul>
+<li>=: 等值比较</li>
+<li>~: 区分大小写的模式匹配检查</li>
+<li>~*: 不区分大小写的模式匹配检查</li>
+<li>!~和!~*：对上面两种测试取反</li>
+<li>-f: 测试路径为文件可能性</li>
+<li>-d: 测试指定路径为目录的可能性</li>
+<li>-e: 测试文件的存在性</li>
+<li>-x: 检查文件是否有执行权限<br>例子:</li>
+</ul>
+<p>基于浏览器实现分离<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if ($http_user_agent ~ Firefox) &#123;  </span><br><span class="line">  rewrite ^(.*)$ /firefox/$1 break;  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  if ($http_user_agent ~ MSIE) &#123;  </span><br><span class="line">    rewrite ^(.*)$ /msie/$1 break;  </span><br><span class="line">   &#125;  </span><br><span class="line">  </span><br><span class="line"> if ($http_user_agent ~ Chrome) &#123;  </span><br><span class="line">      rewrite ^(.*)$ /chrome/$1 break;  </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="proxy模块"><a href="#proxy模块" class="headerlink" title="proxy模块"></a>proxy模块</h4><p>location / {<br>        proxy_pass                <a href="http://localhost:8000" target="_blank" rel="noopener">http://localhost:8000</a>;<br>        proxy_set_header    Host                $host;<br>        proxy_set_header    X-Real-IP       $remote_addr;<br>}<br>如果使用正则表达式,则向后补全地址</p>
+<h5 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h5><p>proxy_cache_path path [level=levels] keys_zone=zonename:size;<br>proxy_cache_valid [responsecode] time;<br>proxy_cache_method请求方法<br>proxy_cache_stale error timeout …<br>proxy_cache_min_uses最少使用次数<br>proxy_cache_bypass设置什么情况不从缓存取数据</p>
+<h4 id="upstream模块"><a href="#upstream模块" class="headerlink" title="upstream模块"></a>upstream模块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream name &#123;</span><br><span class="line">		ip_hash;基于源地址绑定</span><br><span class="line">		server address weight=n max_fails=n fail_timeout=time [down] [backup];</span><br><span class="line">		sticky cookie srv_id expires=1h domain=.example.com path=/;基于cookie绑定</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="fastcgi模块"><a href="#fastcgi模块" class="headerlink" title="fastcgi模块"></a>fastcgi模块</h4><p>与upstream类似</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ul>
+<li>如果没有足够的实力和必要去自己改写Nginx，那么Nginx的优化主要就是：优化Nginx的配置，做到合理高效的使用</li>
+<li>优化的方向和目标，无外乎：<br>  1：尽量提高单台机器处理效率<br>  2：尽量降低单台机器的负载<br>  3：尽量降低磁盘I/O<br>  4：尽量降低网络I/O<br>  5：尽量减少内存使用<br>  6：尽量高效利用CPU</li>
+<li>生产环境下，应该使Nginx模块最小化，就是用到哪几个就开哪几个，这个需要在编译安装Nginx的时候做。</li>
+<li>用户和组，生产环境下，最好是专为Nginx创建用户和组，并单独设置权限，这样会更安全。例如： user nginx nginx</li>
+<li>worker_processes :通常配置成cpu的总核数，或者其2倍，性能会更好。这可以减少进程间切换带来的消耗。</li>
+<li>还可以同时使用worker_cpu_affinity来绑定cpu，使得每个worker进程独享一个cpu，实现完全的并发，性能更好，不过这个只对linux系统有效。</li>
+<li>events里面的事件模型，Linux推荐使用epoll模型，FreeBSD推荐采用kqueue</li>
+<li><p>worker_rlimit_nofile：描述一个nginx进程打开的最多的文件数目。配置成跟linux内核下文件打开数一致就可以了。可以通过ulimit -n 来查看，新装的系统默认是1024，CentOS中可以如下方式进行修改：</p>
+<pre><code>在/etc/security/limits.conf最后增加：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">      * soft nofile 65535</span><br><span class="line">* hard nofile 65535</span><br><span class="line">* soft nproc 65535</span><br><span class="line">* hard nproc 65535</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>worker_connections：每个进程允许的最多连接数，默认是1024，可以设置大一些。</p>
+<pre><code>理论上并发总数是worker_processes和worker_connections的乘积，worker_connections值的设置跟物理内存大小有关，因为系统可以打开的最大文件数和内存大小成正比，一般1GB内存的机器上可以打开的文件数大约是10万左右，所以，worker_connections 的值需根据 worker_processes 进程数目和系统可以打开的最大文件总数进行适当地进行设置。
+</code></pre></li>
+<li>keepalive_timeout：设置到65左右就可以</li>
+<li>client_header_buffer_size：设置请求的缓存，设置为4k，通常为系统分页大小的整数倍，可以通过getconf PAGESIZE 来查看系统分页大小。</li>
+<li>对打开文件设置缓存<br>  open_file_cache max=建议设置成和每个进程打开的最大文件数一致 inactive=60s;<br>  open_file_cache_valid    90s;<br>  open_file_cache_min_uses 2;<br>  open_file_cache_errors   on;</li>
+<li>尽量开启Gzip压缩，gzip_comp_level通常设置成3-5，高了浪费CPU</li>
+<li>Error日志优化：运行期间设置为crit，可以减少I/O</li>
+<li>access日志优化：如果使用了其他统计软件，可以关闭日志，来减少磁盘写，或者写入内存文件，提高I/O效率。</li>
+<li>sendfile指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，通常应设置成on，如果是下载等应用磁盘IO重负载应用，可设置为 off </li>
+<li>Buffers size优化：如果buffer size太小就会到导致nginx使用临时文件存储response，这会引起磁盘读写IO，流量越大问题越明显。<pre><code>client_body_buffer_size 处理客户端请求体buffer大小。用来处理POST提交数据，上传文件等。client_body_buffer_size 需要足够大以容纳需要上传的POST数据。同理还有后端的buffer数据。
+</code></pre></li>
+<li>worker_priority进程优先级设置：Linux系统中，优先级高的进程会占用更多的系统资源，这里配置的是进程的静态优先级，取值范围-20到+19，-20级别最高。因此可以把这个值设置小一点，但不建议比内核进程的值低（通常为-5）</li>
+<li>合理设置静态资源的浏览器缓存时间，尽量用浏览器缓存</li>
+<li>负载均衡锁accept_mutex，建议开启，默认就是开启的</li>
+<li>如果使用SSL的话，而且服务器上有SSL硬件加速设备的话，请开启硬件加速。</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+                <span id="busuanzi_container_page_pv">
+                        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+                      </span>
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/12/12/nginx安装与配置/" data-id="cjqhsx9zt000cw4um2p8uqv76" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/12/25/LVS实现网站的负载均衡/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            LVS实现网站的负载均衡
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/12/07/iptables详解/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">iptables详解</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/25/LVS实现网站的负载均衡/" class="title">LVS实现网站的负载均衡</a></p>
+                            <p class="item-date"><time datetime="2018-12-25T07:50:59.000Z" itemprop="datePublished">2018-12-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/12/nginx安装与配置/" class="title">nginx安装与配置</a></p>
+                            <p class="item-date"><time datetime="2018-12-12T02:57:41.000Z" itemprop="datePublished">2018-12-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/07/iptables详解/" class="title">iptables详解</a></p>
+                            <p class="item-date"><time datetime="2018-12-07T03:10:02.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/06/安装部署lamp/" class="title">安装部署lamp</a></p>
+                            <p class="item-date"><time datetime="2018-12-06T03:34:16.000Z" itemprop="datePublished">2018-12-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/05/httpd2-4中的虚拟主机/" class="title">httpd2.4中的虚拟主机</a></p>
+                            <p class="item-date"><time datetime="2018-12-05T09:55:18.000Z" itemprop="datePublished">2018-12-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/DNS/" style="font-size: 10px;">DNS</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+                <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+                </script>
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 John Doe</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <span id="busuanzi_container_site_pv">
+                        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                    </span>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/12/12/nginx安装与配置/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

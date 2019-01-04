@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>安装部署lamp | Hexo</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="系统CentOS 7 准备几个软件(在官网下载最新版)apr-1.6.5.tar.gzapr-util-1.6.1.tar.gzhttpd-2.4.37.tar.bz2mariadb-10.3.11-linux-x86_64.tar.gzphp-7.3.0.tar.gzphpMyAdmin-4.8.3-all-lang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装部署lamp">
+<meta property="og:url" content="http://yoursite.com/2018/12/06/安装部署lamp/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="系统CentOS 7 准备几个软件(在官网下载最新版)apr-1.6.5.tar.gzapr-util-1.6.1.tar.gzhttpd-2.4.37.tar.bz2mariadb-10.3.11-linux-x86_64.tar.gzphp-7.3.0.tar.gzphpMyAdmin-4.8.3-all-languages.zipwordpress-4.9.8.tar.gz 安装要依赖的包">
+<meta property="og:updated_time" content="2018-12-24T09:53:53.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装部署lamp">
+<meta name="twitter:description" content="系统CentOS 7 准备几个软件(在官网下载最新版)apr-1.6.5.tar.gzapr-util-1.6.1.tar.gzhttpd-2.4.37.tar.bz2mariadb-10.3.11-linux-x86_64.tar.gzphp-7.3.0.tar.gzphpMyAdmin-4.8.3-all-languages.zipwordpress-4.9.8.tar.gz 安装要依赖的包">
+    
+
+    
+        <link rel="alternate" href="/" title="Hexo" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-安装部署lamp" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        安装部署lamp
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/06/安装部署lamp/" class="article-date">
+            <time datetime="2018-12-06T03:34:16.000Z" itemprop="datePublished">2018-12-06</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><p>CentOS 7</p>
+<h2 id="准备几个软件-在官网下载最新版"><a href="#准备几个软件-在官网下载最新版" class="headerlink" title="准备几个软件(在官网下载最新版)"></a>准备几个软件(在官网下载最新版)</h2><p>apr-1.6.5.tar.gz<br>apr-util-1.6.1.tar.gz<br>httpd-2.4.37.tar.bz2<br>mariadb-10.3.11-linux-x86_64.tar.gz<br>php-7.3.0.tar.gz<br>phpMyAdmin-4.8.3-all-languages.zip<br>wordpress-4.9.8.tar.gz</p>
+<h2 id="安装要依赖的包"><a href="#安装要依赖的包" class="headerlink" title="安装要依赖的包"></a>安装要依赖的包</h2><ol>
+<li><p>apache依赖的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install openssl-devel expat-devel pcre-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>php依赖的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install bzip2-devel libxml2-devel libmcrypt-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开发者工具包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum groupinstall &quot;Development Tools&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="编译安装httpd2-4"><a href="#编译安装httpd2-4" class="headerlink" title="编译安装httpd2.4"></a>编译安装httpd2.4</h2><ol>
+<li><p>安装apr<br>APR(Apache portable Run-time libraries，Apache可移植运行库)的目的如其名称一样，主要为上层的应用程序提供一个可以跨越多操作系统平台使用的底层支持接口库。<br>在早期的Apache版本中，应用程序本身必须能够处理各种具体操作系统平台的细节，并针对不同的平台调用不同的处理函数。随着Apache的进一步开发，Apache组织决定将这些通用的函数独立出来并发展成为一个新的项目。这样，APR的开发就从Apache中独立出来，Apache仅仅是使用APR而已。<br>一般情况下，APR开发包很容易理解为仅仅是一个开发包，不过事实上并不是。目前，完整的APR实际上包含了三个开发包：apr、apr-util以及apr-iconv，每一个开发包分别独立开发，并拥有自己的版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar xvf apr-1.6.5.tar.gz x解压v详细f文件</span><br><span class="line">cd apr-1.6.5</span><br><span class="line">./configure --prefix=/app/apr 执行脚本</span><br><span class="line">make &amp;&amp; make install 并行编译安装</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装apr-util</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar apr-util-1.6.1.tar.gz</span><br><span class="line">cd apr-util-1.6.1</span><br><span class="line">./configure --prefix=/app/apr-util --with-apr=/app/apr/</span><br><span class="line">make -j 2 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装httpd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">tar xvf httpd-2.4.37.tar.bz2</span><br><span class="line">cd httpd-2.4.37</span><br><span class="line">./configure --prefix=/app/httpd24 \</span><br><span class="line">--enable-so \</span><br><span class="line">--enable-ssl \</span><br><span class="line">--enable-cgi \</span><br><span class="line">--enable-rewrite \</span><br><span class="line">--with-zlib \</span><br><span class="line">--with-pcre \</span><br><span class="line">--with-apr=/app/apr/ \</span><br><span class="line">--with-apr-util=/app/apr-util/ \</span><br><span class="line">--enable-modules=most \</span><br><span class="line">--enable-mpms-shared=all \</span><br><span class="line">--with-mpm=prefork</span><br><span class="line">make -j 4 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile.d/lamp.sh</span><br><span class="line">PATH=/app/httpd24/bin:/usr/local/mysql/bin/:/app/php/bin/:$PATH</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>mysql,php也一并加进去,为后面提前准备</p>
+<ol>
+<li>启动服务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apachectl</span><br><span class="line">ss -tnl</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>看到有80端口即成功</p>
+<h2 id="使用二进制安装mariadb-mysql"><a href="#使用二进制安装mariadb-mysql" class="headerlink" title="使用二进制安装mariadb(mysql)"></a>使用二进制安装mariadb(mysql)</h2><h3 id="安装mysql的三个方法"><a href="#安装mysql的三个方法" class="headerlink" title="安装mysql的三个方法"></a>安装mysql的三个方法</h3><ol>
+<li><p>使用redhat 自带的mysql rpm 包<br><code>yum install  mysql mysql-server mysql-connector-odbc</code><br>但是redhad自带的包，把一些mysql不常用的功能都给删掉了，所以建议使用官方提供的包手动安装</p>
+</li>
+<li><p>使用官方编译好的二进制包<br>解压缩包后，在压缩包目录下有一个INSTALL-BINARY文件，里面提供有安装mysql的详细命令</p>
+</li>
+<li><p>使用源代码包安装，这种方式虽然编译时间会较长，但是可以最好的适应自己的系统环境</p>
+</li>
+</ol>
+<h3 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h3><ol>
+<li><p>解压到指定位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf mariadb-10.3.11-linux-x86_64.tar.gz -C /usr/local/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建mysql用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd -d /app/mysqldb -r -m -s /sbin/nologin mysql</span><br><span class="line">chown mysql /app/mysqldb/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mariadb的目录名字不符合要求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s mariadb-10.2.9-linux-x86_64/ mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行配置脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scripts/mysql_install_db --user=mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>复制服务脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line">chkconfig --add mysqld</span><br><span class="line">chkconfig --list mysqld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysql.service</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>出现错误找不到/tmp/mysql.sock<br>增加一个软连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行初始化脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行mysql,并为WordPress创建数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p123456</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; create database blogdb;</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; grant all on blogdb.* to &apos;wordpadmin&apos;@&apos;127.0.0.1&apos; identified by &apos;leo&apos; ;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>疑惑:mysql连接要用127.0.0.1,似乎localhost的解析有点不一样</p>
+<h2 id="编译安装php"><a href="#编译安装php" class="headerlink" title="编译安装php"></a>编译安装php</h2><ol>
+<li><p>解压文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf php-7.3.0.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/app/php --enable-mysqlnd --with-mysqli=mysqlnd --with-openssl --with-pdo-mysql=mysqlnd --enable-mbstring --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --enable-xml --enable-sockets --with-apxs2=/app/httpd24/bin/apxs \ --with-mcrypt --with-config-file-path=/etc --with-config-file-scan-dir=/etc/php.d --enable-maintainer-zts --disable-fileinfo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j 4 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加php配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp php.ini-production /etc/php.ini</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在/app/httpd24/conf/httpd.conf尾部加两行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .php</span><br><span class="line">AddType application/x-httpd-php-source .phps</span><br></pre></td></tr></table></figure></p>
+<p>并修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule dir_module&gt;</span><br><span class="line">DirectoryIndex index.php index.html</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>关闭防火墙<br><code>systemctl stop firewalld</code></li>
+<li>重启apache</li>
+<li>添加一个测试连接的页面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vim /app/httpd24/htdocs/index.php</span><br><span class="line">&lt;?php</span><br><span class="line">$mysqli=new mysqli(&quot;127.0.0.1&quot;,&quot;root&quot;,&quot;123456&quot;);</span><br><span class="line">if(mysqli_connect_errno())&#123;</span><br><span class="line">echo &quot;连接数据库失败!&quot;;</span><br><span class="line">$mysqli=null;</span><br><span class="line">exit;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;连接数据库成功!&quot;;</span><br><span class="line">$mysqli-&gt;close();</span><br><span class="line">phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="部署phpmyadmin"><a href="#部署phpmyadmin" class="headerlink" title="部署phpmyadmin"></a>部署phpmyadmin</h2><ol>
+<li><p>解压缩</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip phpMyAdmin-4.8.3-all-languages.zip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>移动到发布文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r phpMyAdmin-4.8.3-all-languages /app/httpd24/htdocs/pma/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r config.sample.inc.php config.inc.php</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$cfg[&apos;Servers&apos;][$i][&apos;host&apos;] = &apos;127.0.0.1&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>部署后登陆不成功参考了以下文章<br><a href="https://stackoverflow.com/questions/41881123/mysqli-real-connect-hy000-2002-no-such-file-or-directory" target="_blank" rel="noopener">https://stackoverflow.com/questions/41881123/mysqli-real-connect-hy000-2002-no-such-file-or-directory</a></p>
+<ol>
+<li>修改httpd配置<br>在/app/httpd24/conf/httpd.conf尾部加两行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ProxyRequests Off</span><br><span class="line">ProxyPassMatch ^/(.*\.php)$ fcgi://127.0.0.1:9000/app/httpd24/htdocs/$1</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="部署WordPress"><a href="#部署WordPress" class="headerlink" title="部署WordPress"></a>部署WordPress</h2><ol>
+<li><p>解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf wordpress-4.9.8.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>移动到发布文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv wordpress/* /app/httpd24/htdocs/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /app/httpd24/htdocs</span><br><span class="line">cp wp-config-sample.php wp-config.php</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>修改其中数据库的登陆信息</p>
+<ol>
+<li>压力测试<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ab -c 10 -n 100 localhost</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+        </div>
+        <footer class="article-footer">
+                <span id="busuanzi_container_page_pv">
+                        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+                      </span>
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/12/06/安装部署lamp/" data-id="cjqhsxa05000jw4umb8ddg2f9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/12/07/iptables详解/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            iptables详解
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/12/05/httpd2-4中的虚拟主机/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">httpd2.4中的虚拟主机</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/25/LVS实现网站的负载均衡/" class="title">LVS实现网站的负载均衡</a></p>
+                            <p class="item-date"><time datetime="2018-12-25T07:50:59.000Z" itemprop="datePublished">2018-12-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/12/nginx安装与配置/" class="title">nginx安装与配置</a></p>
+                            <p class="item-date"><time datetime="2018-12-12T02:57:41.000Z" itemprop="datePublished">2018-12-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/07/iptables详解/" class="title">iptables详解</a></p>
+                            <p class="item-date"><time datetime="2018-12-07T03:10:02.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/06/安装部署lamp/" class="title">安装部署lamp</a></p>
+                            <p class="item-date"><time datetime="2018-12-06T03:34:16.000Z" itemprop="datePublished">2018-12-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/05/httpd2-4中的虚拟主机/" class="title">httpd2.4中的虚拟主机</a></p>
+                            <p class="item-date"><time datetime="2018-12-05T09:55:18.000Z" itemprop="datePublished">2018-12-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/DNS/" style="font-size: 10px;">DNS</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+                <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+                </script>
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 John Doe</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <span id="busuanzi_container_site_pv">
+                        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                    </span>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/12/06/安装部署lamp/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

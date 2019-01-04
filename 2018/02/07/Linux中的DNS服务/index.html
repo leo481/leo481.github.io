@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Linux中的DNS服务 | Hexo</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="DNS介绍域名系统（英文：Domain Name System，缩写：DNS）是互联网的一项服务。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS使用TCP和UDP端口53。 DNS通过允许一个名称服务器把他的一部分名称服务（众所周知的zone）“委托”给子服务器而实现了一种层次结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux中的DNS服务">
+<meta property="og:url" content="http://yoursite.com/2018/02/07/Linux中的DNS服务/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="DNS介绍域名系统（英文：Domain Name System，缩写：DNS）是互联网的一项服务。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS使用TCP和UDP端口53。 DNS通过允许一个名称服务器把他的一部分名称服务（众所周知的zone）“委托”给子服务器而实现了一种层次结构的名称空间。此外，DNS还提供了一些额外的信息，例如系统别名、联系信息以及哪一个">
+<meta property="og:image" content="https://hexo-1256034174.cos.ap-guangzhou.myqcloud.com/wKiom1MgMbGyWG_1AAJ_WSLOd5M012.jpg">
+<meta property="og:updated_time" content="2018-02-14T02:16:29.619Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux中的DNS服务">
+<meta name="twitter:description" content="DNS介绍域名系统（英文：Domain Name System，缩写：DNS）是互联网的一项服务。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS使用TCP和UDP端口53。 DNS通过允许一个名称服务器把他的一部分名称服务（众所周知的zone）“委托”给子服务器而实现了一种层次结构的名称空间。此外，DNS还提供了一些额外的信息，例如系统别名、联系信息以及哪一个">
+<meta name="twitter:image" content="https://hexo-1256034174.cos.ap-guangzhou.myqcloud.com/wKiom1MgMbGyWG_1AAJ_WSLOd5M012.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="Hexo" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Linux中的DNS服务" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Linux中的DNS服务
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/02/07/Linux中的DNS服务/" class="article-date">
+            <time datetime="2018-02-07T11:59:01.000Z" itemprop="datePublished">2018-02-07</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="DNS介绍"><a href="#DNS介绍" class="headerlink" title="DNS介绍"></a>DNS介绍</h2><p>域名系统（英文：Domain Name System，缩写：DNS）是互联网的一项服务。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS使用TCP和UDP端口53。</p>
+<p>DNS通过允许一个名称服务器把他的一部分名称服务（众所周知的zone）“委托”给子服务器而实现了一种层次结构的名称空间。此外，DNS还提供了一些额外的信息，例如系统别名、联系信息以及哪一个主机正在充当系统组或域的邮件枢纽。</p>
+<p>任何一个使用IP的计算机网络可以使用DNS来实现他自己的私有名称系统。尽管如此，当提到在公共的Internet DNS系统上实现的域名时，术语“域名”是最常使用的。</p>
+<p>这是基于504个全球范围的“根域名服务器”（分成13组，分别编号为A至M）[2]。从这504个根服务器开始，余下的Internet DNS命名空间被委托给其他的DNS服务器，这些服务器提供DNS名称空间中的特定部分。</p>
+<h2 id="DNS域架构"><a href="#DNS域架构" class="headerlink" title="DNS域架构"></a>DNS域架构</h2><p>域名系统作为一个层次结构和分布式数据库，包含各种类型的数据，包括主机名和域名。DNS数据库中的名称形成一个分层树状结构称为域命名空间。域名包含单个标签分隔点.</p>
+<p>DNS，采用的是C/S架构，使用一种分布式数据库，有严格的上下级关系，上级仅知道其直接下级，而下级只知道根的位置。当我们要解析某个主机名的时候，先从最上级进行查找，然后逐级往下查找，最终返回结果。最上级的是根域，用.表示根域，根域下又有许多TLD。</p>
+<p>TLD：Top Level Domain顶级域，顶级域又分为三类：</p>
+<ol>
+<li>组织域：如：.com，.org，.net，.cc等等</li>
+<li>国家域：如：.cn，.hk，.iq，.ir，.jp，.us等等</li>
+<li>反向域：IP–&gt;FQDN(早期仅能实现该解析方式)<ul>
+<li>反向：IP–&gt;FQDN</li>
+<li>正向：FQDN–&gt;IP    </li>
+</ul>
+</li>
+</ol>
+<h2 id="DNS查询过程"><a href="#DNS查询过程" class="headerlink" title="DNS查询过程"></a>DNS查询过程</h2><p>DNS的查询过程，按查询方式的不同，分为递归查询和迭代查询。</p>
+<h3 id="递归查询"><a href="#递归查询" class="headerlink" title="递归查询"></a>递归查询</h3><p>只发出一次请求，本地主机向本地域名服务器发出查询请求，如果本地域名服务器能够解析，则返回查询结果，否则，本地域名服务器向根请求查询，如果根知道结果则返回给本地域名服务器结果，否则，就由根在向下移级域名查询结果，这样逐级查询，最终逐级返回结果，最终返回到本地主机。</p>
+<h3 id="迭代查询"><a href="#迭代查询" class="headerlink" title="迭代查询"></a>迭代查询</h3><p>发出多次请求，本地主机先向本地域名与服务器发出查询请求，如果本地域名服务器能够解析，则返回结果，否则，由本地主机向根查询，同样，如果根能够解析直接返回结果，否则返回负责该域名解析的下一级域名，让本地主机找该域名继续查询，最终，找到结果。</p>
+<p>在实际的网络中，一般采用两段式查询过程，即先递归，后迭代。从本地主机到本地域名服务器采用递归查询，而从本地域名服务器到最终结果则采用迭代方式查询。</p>
+<p>下面先来详细讲解一次DNS的查询过程(以www.qq.com为例)<br><img src="https://hexo-1256034174.cos.ap-guangzhou.myqcloud.com/wKiom1MgMbGyWG_1AAJ_WSLOd5M012.jpg" alt="DNS查询"><br>Q1. DNS客户机此时通过浏览器发起对www.qq.com的请求,首先会从本机的Hosts文件中查找是否有这一条记录,或者叫映射关系.如果Hosts文件找不到记录,则客户机会从DNS解析器的缓存中查找<br>Q2. 如果本机的Hosts文件和缓存都没有,则会发起对本机首选的DNS服务器的查询请求<br>Q3,Q4. 本地DNS服务器先判断是否本地区域的资源,如果是的话先查找缓存.缓存没有记录的话则会开始在本地网络解析,返回的结果先缓存起来再发还给客户端<br>Q5. 如果查询的资源不是本地资源而且没有缓存,又没有启用转发,本地服务器会请求13台根服务器<br>Q6. 根服务器收到请求后,会根据请求的顶级域(.com),找出负责此顶级域的服务器,并返回此地址<br>Q7. 本地服务器收到.com的地址后会发起对其的请求<br>Q8. .com服务器收到请求后,会根据请求的二级域(.qq.com),找出负责此二级域的服务器,并返回此地址<br>Q9. 此时本地服务器收到.qq.com的地址并返回给客户机<br>Q10. 如果本地DNS服务器打开了转发模式,本地服务器会把请求转发给上一级DNS服务器,上一级服务器有此记录则返回,没有的话继续查询再上一级的DNS服务器,以此循环,最终把结果返回给客户机</p>
+<h2 id="资源记录"><a href="#资源记录" class="headerlink" title="资源记录:"></a>资源记录:</h2><h3 id="资源记录的格式："><a href="#资源记录的格式：" class="headerlink" title="资源记录的格式："></a>资源记录的格式：</h3><p>数据库中的每一个条目称作一个资源记录(Resource Record，RR)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NAME  [TTL]  IN(关键字)  RRT(资源记录类型) VALUE</span><br></pre></td></tr></table></figure></p>
+<h3 id="资源记录类型："><a href="#资源记录类型：" class="headerlink" title="资源记录类型："></a>资源记录类型：</h3><h4 id="SOA-Start-OF-Authority-："><a href="#SOA-Start-OF-Authority-：" class="headerlink" title="SOA(Start OF Authority)："></a>SOA(Start OF Authority)：</h4><p>起始授权记录(第一条必须是此记录)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">格式： NAME     TTL    IN    SOA   FQDN    ADMINISTRATOR_MAILBOX (</span><br><span class="line">                                serial number：序列号,十进制数字，不能超过10位，通常使用日期，例如2014031001</span><br><span class="line">                                refresh time  ;刷新时间，即每隔多久到主服务器检查一次</span><br><span class="line">                                retry time    ;重试时间，应该小于refresh time</span><br><span class="line">                                expire time   ;过期时间</span><br><span class="line">                                nagative answer ttl; 否定答案缓存时间 )</span><br><span class="line">时间单位：M(分钟)、H(小时)、D(天)、W(周)，默认为秒</span><br><span class="line">邮箱格式：admin@leohuang.top --写---&gt;admin.leohuang.top</span><br><span class="line">name：区域名称，leohuang.top. 通常可以简写为&quot;@&quot;</span><br><span class="line">value: 主DNS服务器的FQDN</span><br><span class="line">如：</span><br><span class="line">    leohuang.top.      500    IN       SOA     ns1.guomaoiu.com.  admin.guomaoiu.com. (</span><br><span class="line">                                    2014030101</span><br><span class="line">                                    1H</span><br><span class="line">                                    5M</span><br><span class="line">                                    1W</span><br><span class="line">                                    1D )</span><br></pre></td></tr></table></figure></p>
+<h4 id="NS-Name-Server-：NAME–-gt-FQDN-："><a href="#NS-Name-Server-：NAME–-gt-FQDN-：" class="headerlink" title="NS(Name Server)：NAME–&gt;FQDN ："></a>NS(Name Server)：NAME–&gt;FQDN ：</h4><p>名称服务器(任何一个NS记录都有一个A记录与其相随,一个区域中可以有多条)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">如：</span><br><span class="line">leohuang.top.       500   IN    NS   ns1.leohuang.top.</span><br><span class="line">  #上面的&quot;guomaoqiu&quot;可以简写为&quot;@&quot;</span><br><span class="line">ns1.leohuang.top.   500   IN    A       172.16.0.1</span><br><span class="line">name:区域名称,通常简写为&quot;@&quot;</span><br><span class="line">value:DNS服务器的FQDN(可以使用相对名称)</span><br></pre></td></tr></table></figure></p>
+<h4 id="A-address-：FQDN–-gt-IPv4"><a href="#A-address-：FQDN–-gt-IPv4" class="headerlink" title="A(address)：FQDN–&gt;IPv4 :"></a>A(address)：FQDN–&gt;IPv4 :</h4><p>主机记录(只能定义在正向区域数据库中)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">如：</span><br><span class="line">  www     600     IN      A           1.2.3.4</span><br><span class="line">  www     600     IN      A           1.2.3.5</span><br><span class="line">  www     600     IN      A           1.2.3.4</span><br><span class="line">  ftp     600     IN      A           1.2.3.4</span><br><span class="line">name: FQDN(可以使用相对名称)</span><br><span class="line">value: IP</span><br><span class="line">#多个主机对应一种服务，可以达到负载均衡的作用</span><br></pre></td></tr></table></figure></p>
+<h4 id="MX-Mail-eXchanger-：NAME–-gt-FQDN："><a href="#MX-Mail-eXchanger-：NAME–-gt-FQDN：" class="headerlink" title="MX(Mail eXchanger)：NAME–&gt;FQDN："></a>MX(Mail eXchanger)：NAME–&gt;FQDN：</h4><p>邮件交换器 (只能定义在正向区域中，可以有多个)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">如：</span><br><span class="line">@     600     IN     MX   10   mail</span><br><span class="line">@     600     IN     MX   20   mail2</span><br><span class="line">name: 区域名称，用于标识smtp服务器</span><br><span class="line">value: 包含优先级和FQDN</span><br><span class="line">#上面&quot;600&quot;代表优先级,取值范围:0-99, 数字越小，级别越高;</span><br></pre></td></tr></table></figure></p>
+<h4 id="CNAME-Canonical-NAME-："><a href="#CNAME-Canonical-NAME-：" class="headerlink" title="CNAME(Canonical NAME)："></a>CNAME(Canonical NAME)：</h4><p>Alias–&gt;FQDN ：别名记录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">如：</span><br><span class="line">ftp     IN      CNAME  www</span><br><span class="line">mail    IN      CNAME  www</span><br><span class="line">name: FQDN</span><br><span class="line">value: FQDN</span><br><span class="line">#用不同的名称标记相同的服务</span><br></pre></td></tr></table></figure></p>
+<h4 id="PTR-pointer-：IP–-gt-FQDN"><a href="#PTR-pointer-：IP–-gt-FQDN" class="headerlink" title="PTR(pointer)：IP–&gt;FQDN"></a>PTR(pointer)：IP–&gt;FQDN</h4><p>指针记录只能定义在反向区域数据文件中，反向区域名称为逆向网络地址加.in-addr.arpa.后缀组成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name: IP, 逆向的主机地址，例如172.16.100.7的name为7.100，完全格式为7.100.16.172.in-addr.arpa.</span><br><span class="line">value: FQDN</span><br></pre></td></tr></table></figure></p>
+<h2 id="bind的安装与配置"><a href="#bind的安装与配置" class="headerlink" title="bind的安装与配置"></a>bind的安装与配置</h2><p>Linux上,实现DNS的软件有许多,我们来说下使用最广泛的bind<br>一个简单的命令安装</p>
+<pre><code>yum install bind -y
+</code></pre><h3 id="区域定义配置文件：-etc-named-conf"><a href="#区域定义配置文件：-etc-named-conf" class="headerlink" title="区域定义配置文件：/etc/named.conf"></a>区域定义配置文件：/etc/named.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zone &quot;ZONE NAME&quot; IN &#123;     #定义区域名称，其中IN是关键字</span><br><span class="line">   type [master|slave|hint|forward];   #指定区域类型</span><br><span class="line">file &quot;ZONE_DATA_FILENAME&quot;;    #指定区域数据文件保存地文件</span><br><span class="line"> masters &#123; MASTER_IP; &#125;;    #指明主服务器地址，该定义只在从服务器上使用</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们先来看一下这个文件里面的内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">options &#123;    #定义全局选项，在所有区域中均有效，如果区域中对某一项有定义，则使用区域中定义的，否则使用此处定义好的;</span><br><span class="line">   listen-on port 53 &#123; 127.0.0.1; &#125;;#指定BIND侦听的DNS查询请求的本机IP地址和端口;</span><br><span class="line">   listen-on-v6 port 53 &#123; ::1; &#125;;#同上，但只用在IPv6版本中;</span><br><span class="line">   directory       &quot;/var/named&quot;;#指定区域配置文件所保存的路径;</span><br><span class="line">   dump-file       &quot;/var/named/data/cache_dump.db&quot;; #当执行rndc dumpdb命令时，DNS服务器存放数据库文件的路径名;</span><br><span class="line">   statistics-file &quot;/var/named/data/named_stats.txt&quot;;</span><br><span class="line">   memstatistics-file &quot;/var/named/data/named_mem_stats.txt&quot;;</span><br><span class="line">   allow-query     &#123; localhost; &#125;; #指定接受DNS查询请求的客户端;</span><br><span class="line">   recursion yes; #是否允许递归</span><br><span class="line">   dnssec-enable yes;</span><br><span class="line">   dnssec-validation yes;</span><br><span class="line">   dnssec-lookaside auto;</span><br><span class="line">   /* Path to ISC DLV key */</span><br><span class="line">   bindkeys-file &quot;/etc/named.iscdlv.key&quot;;</span><br><span class="line">   managed-keys-directory &quot;/var/named/dynamic&quot;;</span><br><span class="line">&#125;;</span><br><span class="line">logging &#123;                    #指定bind服务的日志参数;</span><br><span class="line">   channel default_debug &#123;   #日志通道，用于指定日志发送目标，default_debug是通道名称;</span><br><span class="line">         file &quot;data/named.run&quot;; #记录的日志保存到指定路径下的的文件中;</span><br><span class="line">         severity dynamic; #指定日志的级别;</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">zone &quot;.&quot; IN &#123;  #指定区域配置参数</span><br><span class="line">        type hint;  #根</span><br><span class="line">        file &quot;named.ca&quot;; #指定保存数据文件的路径，这里是相对路径，即相对上边的/var/named</span><br><span class="line">&#125;;</span><br><span class="line">include &quot;/etc/named.rfc1912.zones&quot;; #这里使用include指令将该配置文件中其他区域定义在该文件中，</span><br><span class="line">include &quot;/etc/named.root.key&quot;;</span><br></pre></td></tr></table></figure></p>
+<h4 id="options-需要改的4个地方"><a href="#options-需要改的4个地方" class="headerlink" title="options {};需要改的4个地方"></a>options {};需要改的4个地方</h4><ol>
+<li><p>listen-on port 53 { 127.0.0.1; };  端口上只绑定自己ip<br>改为：listen-on port 53 { localhost; }; 或 // 注释掉</p>
+</li>
+<li><p>allow-query { localhost; }; 只允许自己访问<br>改为：allow-query { any; };也可以不用any,公司内部允许哪些就加哪些，或 // 注释掉</p>
+</li>
+<li><p>allow-transfer 是安全策略，为了防止任何人传输下载自己的dns信息，只允许自己的从dns同步<br>改为：allow-transfer { 允许传输的ip;};</p>
+</li>
+<li>缓存名称服务器的配置：dnssec: 建议关闭dnssec ，设为no，影响委派和转发<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dnssec-enable no;</span><br><span class="line">dnssec-validation no;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="新建一个区域的流程"><a href="#新建一个区域的流程" class="headerlink" title="新建一个区域的流程"></a>新建一个区域的流程</h3><ol>
+<li>在/etc/named.rfc1912.zone中创建区域信息</li>
+<li><p>在/var/named目录下创建区域文件”leohuang.top.zone”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$TTL 600 #宏，表示TTL值为600，全局使用，单位默认为秒</span><br><span class="line">@       IN SOA  ns1.leohuang.top. admin.leohuang.top.  (</span><br><span class="line">                                2014031501      ; serial</span><br><span class="line">                                        1D      ; refresh</span><br><span class="line">                                        1H      ; retry</span><br><span class="line">                                        1W      ; expire</span><br><span class="line">                                        3H )    ; minimum</span><br><span class="line">        IN      NS      ns1   #域名与第一行相同时可不写，表示直接继承上一行的区域名</span><br><span class="line">        IN      MX 10   mail  #同上，mail还可以写成mail.langdu.com.</span><br><span class="line">ns1     IN      A       172.16.43.43</span><br><span class="line">www     IN      A       172.16.43.41</span><br><span class="line">mail    IN      A       172.16.43.42</span><br><span class="line">ftp     IN      CNAME   www</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改该区域文件的权限为640</p>
+</li>
+<li>修改该区域文件的属主属组为root:named<h2 id="dig命令"><a href="#dig命令" class="headerlink" title="dig命令"></a>dig命令</h2>只用于测试dns 系统，不会查询hosts 文件进行解析</li>
+</ol>
+<p>查询选项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dig -t RT(资源记录类型) NAME [#IP]    #当记录类型不同时，其后所跟的名称也不同</span><br><span class="line">dig -t NS ZONE_NAME     #通过区域名查询</span><br><span class="line">dig -x IP：根据IP查找FQDN   </span><br><span class="line">    #在使用该命令时，系统会返回给我们很多信息，我们主要看ANSWER SECTION这个选项的信息，这才是我们想要的答案，其他选项不做介绍</span><br><span class="line">dig +norecurse -t A FQDN @HOST     #通过host主机不递归查询该FQDN，默认情况使用递归查询</span><br><span class="line">dig +trace -t A FQDN @HOST         #通过host主机追踪查询该FQDN的查询过程</span><br><span class="line">host -t RT NAME：查询名称的解析结果</span><br><span class="line">    如：# host -t RT www.leohuang.top</span><br></pre></td></tr></table></figure></p>
+<h2 id="nslookup命令"><a href="#nslookup命令" class="headerlink" title="nslookup命令"></a>nslookup命令</h2><p>用法： nslookup [-option] [name | -] [server]</p>
+<p>交互式模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nslookup&gt;</span><br><span class="line">server IP: 指明使用哪个DNS server 进行查询</span><br><span class="line">set q=RR_TYPE: 指明查询的资源记录类型</span><br><span class="line">NAME: 要查询的名称</span><br></pre></td></tr></table></figure></p>
+<h2 id="rndc命令"><a href="#rndc命令" class="headerlink" title="rndc命令"></a>rndc命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">rndc：</span><br><span class="line"></span><br><span class="line">　　rndc --&gt; rndc (953/tcp)</span><br><span class="line"></span><br><span class="line">　　rndc COMMAND</span><br><span class="line"></span><br><span class="line">COMMAND:</span><br><span class="line"></span><br><span class="line">　　reload: 重载主配置文件和区域解析库文件</span><br><span class="line"></span><br><span class="line">　　reload zonename: 重载区域解析库文件</span><br><span class="line"></span><br><span class="line">　　retransfer zonename: 手动启动 区域传送， 而不管序列号是否增加</span><br><span class="line"></span><br><span class="line">　　notify zonename: 重新对区域传送发通知，当主从同步过程发生意外时，</span><br><span class="line"></span><br><span class="line">　　　　例：rndc notify leohuang.top</span><br><span class="line"></span><br><span class="line">　　reconfig: 重载主配置文件</span><br><span class="line"></span><br><span class="line">　　querylog: 开启或关闭查询日志文件/var/log/message（默认不启用日志），排错的时候才开启，要不访问一条加一条记录，量太大了；关闭，执行同样的命令</span><br><span class="line"></span><br><span class="line">　　　　tail -f /var/log/messages 动态查询日志</span><br><span class="line"></span><br><span class="line">　　trace: 递增debug 一个级别</span><br><span class="line"></span><br><span class="line">　　trace LEVEL: 指定使用的级别，日志级别，日志的详细程度</span><br><span class="line"></span><br><span class="line">　　notrace：为将调试级别设置为 0</span><br><span class="line"></span><br><span class="line">　　flush ：清空DNS 服务器的所有缓存记录</span><br></pre></td></tr></table></figure>
+        </div>
+        <footer class="article-footer">
+                <span id="busuanzi_container_page_pv">
+                        本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+                      </span>
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/02/07/Linux中的DNS服务/" data-id="cjqhsx9yx0003w4um8egjto58" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/08/07/DNS大实验/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            DNS大实验
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/02/06/浅谈如何搭建私有CA签署证书/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">浅谈如何搭建私有CA签署证书</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/25/LVS实现网站的负载均衡/" class="title">LVS实现网站的负载均衡</a></p>
+                            <p class="item-date"><time datetime="2018-12-25T07:50:59.000Z" itemprop="datePublished">2018-12-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/12/nginx安装与配置/" class="title">nginx安装与配置</a></p>
+                            <p class="item-date"><time datetime="2018-12-12T02:57:41.000Z" itemprop="datePublished">2018-12-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/07/iptables详解/" class="title">iptables详解</a></p>
+                            <p class="item-date"><time datetime="2018-12-07T03:10:02.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/06/安装部署lamp/" class="title">安装部署lamp</a></p>
+                            <p class="item-date"><time datetime="2018-12-06T03:34:16.000Z" itemprop="datePublished">2018-12-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/12/05/httpd2-4中的虚拟主机/" class="title">httpd2.4中的虚拟主机</a></p>
+                            <p class="item-date"><time datetime="2018-12-05T09:55:18.000Z" itemprop="datePublished">2018-12-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/">DNS</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/DNS/" style="font-size: 10px;">DNS</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+                <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+                </script>
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 John Doe</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                <span id="busuanzi_container_site_pv">
+                        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                    </span>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/02/07/Linux中的DNS服务/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
